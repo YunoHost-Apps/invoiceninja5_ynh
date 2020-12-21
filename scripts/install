@@ -150,8 +150,8 @@ ynh_script_progression --message="Building the application..."
 
 pushd "$final_path"
 	# Run the database migrations and initially fill the db
-	php$phpversion artisan migrate --no-interaction --verbose --force
-	php$phpversion artisan db:seed --force --no-interaction --verbose
+	php$phpversion artisan optimize --no-interaction --verbose
+	php$phpversion artisan migrate:fresh --seed --no-interaction --verbose --force
 popd
 
 #=================================================
