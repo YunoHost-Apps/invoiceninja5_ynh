@@ -154,6 +154,14 @@ pushd "$final_path"
 	php$phpversion artisan migrate:fresh --seed --no-interaction --verbose --force
 popd
 
+# ynh_app_setting_set --app=$app --key=unprotected_uris --value='/'
+
+# first_name="$(ynh_app_setting_get --app=$app --key=mail_from_name) | cut -d ' ' -f 1"
+# last_name="$(ynh_app_setting_get --app=$app --key=mail_from_name) | cut -d ' ' -f 2"
+# mail_from_address="$(ynh_user_get_info $admin mail)"
+
+# curl --silent --show-error --insecure --location -H "Content-Type:application/json" --header "Host: $domain" --header "X-Requested-With: XMLHttpRequest" --resolve $domain:443:127.0.0.1 --data "{\"report_errors\":true,\"email\":\"$mail_from_address\",\"password\":\"insecurechangeme\",\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"terms_of_service\":\"1\",\"privacy_policy\":\"1\"}" 'https://localhost/api/v1/signup?first_load=true' --cookie-jar /tmp/ynh--cookie.txt --cookie /tmp/ynh--cookie.txt 
+
 #=================================================
 # ADD A CRON JOB
 #=================================================
