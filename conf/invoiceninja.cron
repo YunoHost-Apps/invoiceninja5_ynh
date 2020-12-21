@@ -1,3 +1,1 @@
-0 8 * * * __USER__ /usr/bin/php__YNH_PHP_VERSION__ __DESTDIR__/artisan ninja:send-invoices -q
-0 8 * * * __USER__ /usr/bin/php__YNH_PHP_VERSION__ __DESTDIR__/artisan ninja:send-reminders -q
-
+* * * * * __USER__ /usr/bin/php__YNH_PHP_VERSION__ __DESTDIR__/artisan schedule:run >> /dev/null 2>&1
