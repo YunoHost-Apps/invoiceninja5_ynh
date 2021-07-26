@@ -55,8 +55,8 @@ ynh_app_setting_set --app=$app --key=api_secret --value="$(ynh_string_random --l
 ynh_app_setting_set --app=$app --key=app_key --value="$(ynh_string_random --length=32)"
 ynh_app_setting_set --app=$app --key=phantomjs_key --value="$(ynh_string_random --length=32)"
 
-ynh_app_setting_set --app=$app --key=mail_from_address --value="$(ynh_user_get_info $admin mail)"
-ynh_app_setting_set --app=$app --key=mail_from_name --value="$(ynh_user_get_info $admin firstname) $(ynh_user_get_info $admin lastname)"
+ynh_app_setting_set --app=$app --key=email --value="$(ynh_user_get_info $admin mail)"
+ynh_app_setting_set --app=$app --key=email__name --value="$(ynh_user_get_info $admin firstname) $(ynh_user_get_info $admin lastname)"
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -77,10 +77,7 @@ ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 #=================================================
 ynh_script_progression --message="Installing dependencies..."
 
-#ynh_install_app_dependencies $pkg_dependencies
-
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
-ynh_use_nodejs
+ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE DEDICATED USER
@@ -106,7 +103,7 @@ chown -R $app:www-data "$final_path"
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring nginx web server..."
+ynh_script_progression --message="Configuring NGINX web server..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -114,7 +111,7 @@ ynh_add_nginx_config
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring php-fpm..."
+ynh_script_progression --message="Configuring PHP-FPM..."
 
 # Create a dedicated php-fpm config
 ynh_add_fpm_config --package="$extra_php_dependencies"
@@ -127,24 +124,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Modifying a config file..."
 
-config="$final_path/.env"
-ynh_replace_string --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$config"
-
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$config"
-ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="$config"
-ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$config"
-ynh_replace_string --match_string="__DB_USER__" --replace_string="$db_user" --target_file="$config"
-ynh_replace_string --match_string="__DB_PASS__" --replace_string="$db_pwd" --target_file="$config"
-
-ynh_replace_string --match_string="__API_SECRET__" --replace_string="$(ynh_app_setting_get --app=$app --key=api_secret)" --target_file="$config"
-ynh_replace_string --match_string="__APP_KEY__" --replace_string="$(ynh_app_setting_get --app=$app --key=app_key)" --target_file="$config"
-ynh_replace_string --match_string="__PHANTOMJS_KEY__" --replace_string="$(ynh_app_setting_get --app=$app --key=phantomjs_jey)" --target_file="$config"
-
-ynh_replace_string --match_string="__MAIL_FROM_ADDRESS__" --replace_string="$(ynh_app_setting_get --app=$app --key=mail_from_address)" --target_file="$config"
-ynh_replace_string --match_string="__MAIL_FROM_NAME__" --replace_string="$(ynh_app_setting_get --app=$app --key=mail_from_name)" --target_file="$config"
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum --file="$config"
+ynh_add_config --template="../conf/default.env" --destination="$final_path/.env"
 
 #=================================================
 # BUILD THE APPLICATION
@@ -177,7 +157,7 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 
