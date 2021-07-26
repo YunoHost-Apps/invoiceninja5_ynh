@@ -133,10 +133,10 @@ ynh_add_fpm_config --package="$extra_php_dependencies"
 # MODIFY A CONFIG FILE
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_add_config --template="../conf/default.env" --destination="$final_path/.env"
-fi
+# if [ "$upgrade_type" == "UPGRADE_APP" ]
+# then
+# 	ynh_add_config --template="../conf/default.env" --destination="$final_path/.env"
+# fi
 
 #=================================================
 # UPGRADE DATABASE
