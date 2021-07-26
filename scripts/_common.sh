@@ -5,6 +5,7 @@
 #=================================================
 
 YNH_PHP_VERSION="7.4"
+
 nodejs_version=12
 
 # dependencies used by the app

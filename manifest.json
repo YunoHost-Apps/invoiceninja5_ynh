@@ -5,7 +5,7 @@
     "description": {
         "en": "Create and email invoices, track payments and expenses, and time tasks"
     },
-    "version": "5.0.35~ynh1",
+    "version": "5.2.14~ynh1",
     "url": "https://invoiceninja.org",
     "license": "AAL",
     "maintainer": {
@@ -14,7 +14,7 @@
         "url": "https://github.com/YunoHost-Apps/invoiceninja5_ynh/"
     },
     "requirements": {
-        "yunohost": ">= 3.5"
+        "yunohost": ">= 4.2.0"
     },
     "multi_instance": true,
     "services": [
