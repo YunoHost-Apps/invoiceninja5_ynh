@@ -68,12 +68,9 @@ then
 fi
 
 #=================================================
-# STANDARD MODIFICATIONS
-#=================================================
-#=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
-ynh_script_progression --message="Updating nginx web server configuration..."
+ynh_script_progression --message="Updating NGINX web server configuration..."
 
 nginx_conf_path=/etc/nginx/conf.d/$old_domain.d/$app.conf
 
@@ -106,20 +103,13 @@ fi
 #=================================================
 ynh_script_progression --message="Modifying a config file..."
 
-config="$final_path/.env"
-ynh_backup_if_checksum_is_different --file="$final_path/CONFIG_FILE"
+ynh_replace_string --match_string="$old_domain$old_path" --replace_string="$new_domain$new_path" --target_file="$final_path/.env"
+ynh_store_file_checksum --file="$final_path/.env"
 
-ynh_replace_string --match_string="$old_domain$old_path" --replace_string="$new_domain$new_path" --target_file="$config"
-
-ynh_store_file_checksum --file="$config"
-
-#=================================================
-# GENERIC FINALISATION
-#=================================================
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 
