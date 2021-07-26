@@ -30,6 +30,12 @@ language=$YNH_APP_ARG_LANGUAGE
 
 app=$YNH_APP_INSTANCE_NAME
 
+api_secret="$(ynh_string_random --length=32)"
+app_key="$(ynh_string_random --length=32)"
+phantomjs_key="$(ynh_string_random --length=32)"
+email_name="$(ynh_user_get_info $admin firstname) $(ynh_user_get_info $admin lastname)"
+email="$(ynh_user_get_info $admin mail)"
+
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
@@ -50,13 +56,6 @@ ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=language --value=$language
-
-ynh_app_setting_set --app=$app --key=api_secret --value="$(ynh_string_random --length=32)"
-ynh_app_setting_set --app=$app --key=app_key --value="$(ynh_string_random --length=32)"
-ynh_app_setting_set --app=$app --key=phantomjs_key --value="$(ynh_string_random --length=32)"
-
-ynh_app_setting_set --app=$app --key=email --value="$(ynh_user_get_info $admin mail)"
-ynh_app_setting_set --app=$app --key=email__name --value="$(ynh_user_get_info $admin firstname) $(ynh_user_get_info $admin lastname)"
 
 #=================================================
 # STANDARD MODIFICATIONS

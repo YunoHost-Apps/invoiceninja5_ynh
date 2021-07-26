@@ -1,5 +1,5 @@
 [Unit]
-Description=invoiceninja: Create and email invoices
+Description=InvoiceNinja: Create and email invoices
 After=network.target
 
 [Service]
