@@ -25,6 +25,12 @@ db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 db_user=$db_name
 
+api_secret=$(ynh_app_setting_get --app=$app --key=api_secret)
+app_key=$(ynh_app_setting_get --app=$app --key=app_key)
+phantomjs_key=$(ynh_app_setting_get --app=$app --key=phantomjs_key)
+email_name=$(ynh_app_setting_get --app=$app --key=email_name)
+email=$(ynh_app_setting_get --app=$app --key=email)
+
 #=================================================
 # CHECK VERSION
 #=================================================
@@ -95,6 +101,7 @@ fi
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
+chmod -R 755 $final_path/storage
 
 #=================================================
 # UPGRADE DEPENDENCIES
@@ -128,25 +135,7 @@ ynh_add_fpm_config --package="$extra_php_dependencies"
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_script_progression --message="Modifying a config file..."
-
-	ynh_replace_string --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$config"
-
-	ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$config"
-	ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="$config"
-	ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$config"
-	ynh_replace_string --match_string="__DB_USER__" --replace_string="$db_user" --target_file="$config"
-	ynh_replace_string --match_string="__DB_PASS__" --replace_string="$db_pwd" --target_file="$config"
-
-	ynh_replace_string --match_string="__API_SECRET__" --replace_string="$(ynh_app_setting_get --app=$app --key=api_secret)" --target_file="$config"
-	ynh_replace_string --match_string="__APP_KEY__" --replace_string="$(ynh_app_setting_get --app=$app --key=app_key)" --target_file="$config"
-	ynh_replace_string --match_string="__PHANTOMJS_KEY__" --replace_string="$(ynh_app_setting_get --app=$app --key=phantomjs_jey)" --target_file="$config"
-
-	ynh_replace_string --match_string="__MAIL_FROM_ADDRESS__" --replace_string="$(ynh_app_setting_get --app=$app --key=mail_from_address)" --target_file="$config"
-	ynh_replace_string --match_string="__MAIL_FROM_NAME__" --replace_string="$(ynh_app_setting_get --app=$app --key=mail_from_name)" --target_file="$config"
-
-	# Calculate and store the config file checksum into the app settings
-	ynh_store_file_checksum --file="$config"
+	ynh_add_config --template="../conf/default.env" --destination="$final_path/.env"
 fi
 
 #=================================================
@@ -168,15 +157,6 @@ pushd "$final_path"
 	# Bring the application out of maintenance mode
 	php$phpversion artisan up --no-interaction --verbose
 popd
-
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..."
-
-# Set permissions on app files
-
-chmod -R 755 $final_path/storage
 
 #=================================================
 # RELOAD NGINX

@@ -57,6 +57,12 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=language --value=$language
 
+ynh_app_setting_set --app=$app --key=api_secret --value=$api_secret
+ynh_app_setting_set --app=$app --key=app_key --value=$app_key
+ynh_app_setting_set --app=$app --key=phantomjs_key --value=$phantomjs_key
+ynh_app_setting_set --app=$app --key=email_name --value=$email_name
+ynh_app_setting_set --app=$app --key=email --value=$email
+
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
