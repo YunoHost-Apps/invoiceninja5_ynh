@@ -7,11 +7,18 @@
     },
     "version": "5.2.14~ynh1",
     "url": "https://invoiceninja.org",
+    "upstream": {
+        "license": "AAL",
+        "website": "https://invoiceninja.org",
+        "demo": "https://app.invoiceninja.com/dashboard",
+        "admindoc": "https://docs.invoiceninja.com/index.html",
+        "userdoc": "https://yunohost.org/apps",
+        "code": "https://github.com/invoiceninja/invoiceninja"
+    },
     "license": "AAL",
     "maintainer": {
         "name": "Sebastian Gumprich",
-        "email": "yunohost AT gumpri DOT ch",
-        "url": "https://github.com/YunoHost-Apps/invoiceninja5_ynh/"
+        "email": "yunohost AT gumpri DOT ch"
     },
     "requirements": {
         "yunohost": ">= 4.2.0"
