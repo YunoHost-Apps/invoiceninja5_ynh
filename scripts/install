@@ -167,14 +167,9 @@ popd
 #=================================================
 ynh_script_progression --message="Adding a cron job..."
 
-cron_path="/etc/cron.d/$app"
-cp -a ../conf/invoiceninja.cron "$cron_path"
-chown root: "$cron_path"
-chmod 644 "$cron_path"
-
-ynh_replace_string --match_string="__USER__" --replace_string="$app" --target_file="$cron_path"
-ynh_replace_string --match_string="__DESTDIR__" --replace_string="$final_path" --target_file="$cron_path"
-ynh_replace_string --match_string="__YNH_PHP_VERSION__" --replace_string="$YNH_PHP_VERSION" --target_file="$cron_path"
+ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+chown root: "/etc/cron.d/$app"
+chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # GENERIC FINALIZATION
