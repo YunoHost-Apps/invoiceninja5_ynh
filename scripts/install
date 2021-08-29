@@ -101,10 +101,6 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
-
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
@@ -140,15 +136,14 @@ pushd "$final_path"
 	# Run the database migrations and initially fill the db
 	php$phpversion artisan optimize --no-interaction --verbose
 	php$phpversion artisan migrate:fresh --seed --no-interaction --verbose --force
+	php$phpversion artisan ninja:create-account --email $email --password changeme --no-interaction --verbose
+	php$phpversion artisan view:clear
+	php$phpversion artisan cache:clear
 popd
 
-# ynh_app_setting_set --app=$app --key=unprotected_uris --value='/'
-
-# first_name="$(ynh_app_setting_get --app=$app --key=mail_from_name) | cut -d ' ' -f 1"
-# last_name="$(ynh_app_setting_get --app=$app --key=mail_from_name) | cut -d ' ' -f 2"
-# mail_from_address="$(ynh_user_get_info $admin mail)"
-
-# curl --silent --show-error --insecure --location -H "Content-Type:application/json" --header "Host: $domain" --header "X-Requested-With: XMLHttpRequest" --resolve $domain:443:127.0.0.1 --data "{\"report_errors\":true,\"email\":\"$mail_from_address\",\"password\":\"insecurechangeme\",\"first_name\":\"$first_name\",\"last_name\":\"$last_name\",\"terms_of_service\":\"1\",\"privacy_policy\":\"1\"}" 'https://localhost/api/v1/signup?first_load=true' --cookie-jar /tmp/ynh--cookie.txt --cookie /tmp/ynh--cookie.txt 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # ADD A CRON JOB
@@ -165,7 +160,7 @@ chmod 644 "/etc/cron.d/$app"
 ynh_script_progression --message="Configuring permissions..." --weight=3
 
 # Restrict access to admin only
-ynh_permission_update --permission="main" --remove="all_users" --add=$admin
+ynh_permission_update --permission "main" --add visitors
 
 #=================================================
 # RELOAD NGINX
