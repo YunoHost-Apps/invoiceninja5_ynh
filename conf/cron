@@ -1,1 +1,2 @@
-* * * * * __APP__ /usr/bin/php__PHPVERSION__ __FINALPATH__/artisan schedule:run >> /dev/null 2>&1
+* * * * * __APP__ cd __FINALPATH__ && /usr/bin/php__PHPVERSION__ -d register_argc_argv=On artisan schedule:run >> /dev/null 2>&1
+* * * * * __APP__ cd __FINALPATH__ && /usr/bin/php__PHPVERSION__ -d register_argc_argv=On artisan queue:work --stop-when-empty >> /dev/null 2>&1
