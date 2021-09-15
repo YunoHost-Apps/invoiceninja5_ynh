@@ -19,8 +19,9 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
+is_public=$YNH_APP_ARG_IS_PUBLIC
+
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 db_user=$db_name
@@ -88,7 +89,7 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 
 config="$final_path/.env"
-ynh_backup_if_checksum_is_different --file="$final_path/CONFIG_FILE"
+ynh_backup_if_checksum_is_different --file="$final_path/.env"
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then

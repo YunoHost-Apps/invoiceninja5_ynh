@@ -144,6 +144,13 @@ chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 #=================================================
+# STORE THE CHECKSUM OF THE CONFIG FILE
+#=================================================
+
+# Calculate and store the config file checksum into the app settings
+ynh_store_file_checksum --file="$final_path/.env"
+
+#=================================================
 # ADD A CRON JOB
 #=================================================
 ynh_script_progression --message="Adding a cron job..."
