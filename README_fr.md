@@ -44,8 +44,8 @@ Invoice Ninja is the #1 open-source platform to create & email invoices, track p
 ## Documentations et ressources
 
 * Site officiel de l'app : https://invoiceninja.org
-* Documentation officielle utilisateur : https://yunohost.org/apps
-* Documentation officielle de l'admin : https://docs.invoiceninja.com/index.html
+* Documentation officielle utilisateur : https://invoiceninja.github.io/
+* Documentation officielle de l'admin : https://invoiceninja.github.io/
 * Dépôt de code officiel de l'app : https://github.com/invoiceninja/invoiceninja
 * Documentation YunoHost pour cette app : https://yunohost.org/app_invoiceninja5
 * Signaler un bug : https://github.com/YunoHost-Apps/invoiceninja5_ynh/issues
