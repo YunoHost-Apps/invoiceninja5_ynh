@@ -11,8 +11,8 @@
         "license": "ELv2",
         "website": "https://invoiceninja.org",
         "demo": "https://app.invoiceninja.com/dashboard",
-        "admindoc": "https://docs.invoiceninja.com/index.html",
-        "userdoc": "https://yunohost.org/apps",
+        "admindoc": "https://invoiceninja.github.io/",
+        "userdoc": "https://invoiceninja.github.io/",
         "code": "https://github.com/invoiceninja/invoiceninja"
     },
     "license": "AAL",
@@ -56,6 +56,11 @@
                 },
                 "choices": ["fr", "en"],
                 "default": "en"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "default": true
             }
         ]
     }
