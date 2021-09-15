@@ -5,6 +5,7 @@
 		admin="john"
 		language="fr"
                 is_public=1
+                password="1Strong-Password"
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=0
@@ -16,7 +17,7 @@
 		#upgrade=1	from_commit=CommitHash
 		backup_restore=1
 		multi_instance=1
-		change_url=1
+		change_url=0
 ;;; Options
 Email=
 Notification=none
