@@ -126,6 +126,13 @@ ynh_script_progression --message="Modifying a config file..."
 ynh_add_config --template="../conf/default.env" --destination="$final_path/.env"
 
 #=================================================
+# STORE THE CHECKSUM OF THE CONFIG FILE
+#=================================================
+
+# Calculate and store the config file checksum into the app settings
+ynh_store_file_checksum --file="$final_path/.env"
+
+#=================================================
 # BUILD THE APPLICATION
 #=================================================
 ynh_script_progression --message="Building the application..."
@@ -142,13 +149,6 @@ popd
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-
-#=================================================
-# STORE THE CHECKSUM OF THE CONFIG FILE
-#=================================================
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum --file="$final_path/.env"
 
 #=================================================
 # ADD A CRON JOB
