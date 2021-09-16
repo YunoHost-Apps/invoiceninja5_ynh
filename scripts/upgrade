@@ -32,6 +32,8 @@ phantomjs_key=$(ynh_app_setting_get --app=$app --key=phantomjs_key)
 email_name=$(ynh_app_setting_get --app=$app --key=email_name)
 email=$(ynh_app_setting_get --app=$app --key=email)
 
+final_path=/var/www/$app
+
 #=================================================
 # CHECK VERSION
 #=================================================
