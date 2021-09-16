@@ -33,8 +33,7 @@
         "install" : [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "example.com"
+                "type": "domain"
             },
             {
                 "name": "path",
@@ -44,8 +43,7 @@
             },
             {
                 "name": "admin",
-                "type": "user",
-                "example": "johndoe"
+                "type": "user"
             },
             {
                 "name": "language",
@@ -60,7 +58,10 @@
             {
                 "name": "is_public",
                 "type": "boolean",
-                "default": true
+                "default": true,
+		"help": {
+		  "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access"
+		}
             }
         ]
     }
