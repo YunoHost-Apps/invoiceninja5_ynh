@@ -31,7 +31,8 @@ app=$YNH_APP_INSTANCE_NAME
 api_secret="$(ynh_string_random --length=32)"
 app_key="$(ynh_string_random --length=32)"
 phantomjs_key="$(ynh_string_random --length=32)"
-email_name="$(ynh_user_get_info $admin firstname) $(ynh_user_get_info $admin lastname)"
+email_firstname="$(ynh_user_get_info $admin firstname)"
+email_lastname="$(ynh_user_get_info $admin lastname)"
 email="$(ynh_user_get_info $admin mail)"
 
 #=================================================
@@ -58,7 +59,8 @@ ynh_app_setting_set --app=$app --key=language --value=$language
 ynh_app_setting_set --app=$app --key=api_secret --value=$api_secret
 ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 ynh_app_setting_set --app=$app --key=phantomjs_key --value=$phantomjs_key
-ynh_app_setting_set --app=$app --key=email_name --value=$email_name
+ynh_app_setting_set --app=$app --key=email_firstname --value="$email_firstname"
+ynh_app_setting_set --app=$app --key=email_lastname --value="$email_lastname"
 ynh_app_setting_set --app=$app --key=email --value=$email
 
 #=================================================
@@ -123,7 +125,10 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Modifying a config file..."
 
-ynh_add_config --template="../conf/default.env" --destination="$final_path/.env"
+ynh_add_config --template="default.env" --destination="$final_path/.env"
+
+chmod 400 "$final_path/.env"
+chown $app:$app "$final_path/.env"
 
 #=================================================
 # STORE THE CHECKSUM OF THE CONFIG FILE

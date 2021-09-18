@@ -12,13 +12,14 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..."
+ynh_script_progression --message="Loading installation settings..." --time --weight=1
 
 app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
 is_public=$YNH_APP_ARG_IS_PUBLIC
 
@@ -29,10 +30,10 @@ db_user=$db_name
 api_secret=$(ynh_app_setting_get --app=$app --key=api_secret)
 app_key=$(ynh_app_setting_get --app=$app --key=app_key)
 phantomjs_key=$(ynh_app_setting_get --app=$app --key=phantomjs_key)
-email_name=$(ynh_app_setting_get --app=$app --key=email_name)
+email_firstname=$(ynh_app_setting_get --app=$app --key=email_firstname)
+email_lastname=$(ynh_app_setting_get --app=$app --key=email_lastname)
 email=$(ynh_app_setting_get --app=$app --key=email)
 
-final_path=/var/www/$app
 
 #=================================================
 # CHECK VERSION
@@ -48,40 +49,16 @@ ynh_script_progression --message="Backing up the app before upgrading (may take 
 # Backup the current version of the app
 ynh_backup_before_upgrade
 ynh_clean_setup () {
-	# restore it if the upgrade fails
+	# Restore it if the upgrade fails
 	ynh_restore_upgradebackup
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
 #=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression --message="Ensuring downward compatibility..."
-
-# If db_name doesn't exist, create it
-if [ -z "$db_name" ]; then
-	db_name=$(ynh_sanitize_dbid --db_name=$app)
-	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-fi
-
-# If final_path doesn't exist, create it
-if [ -z "$final_path" ]; then
-	final_path=/var/www/$app
-	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
-fi
-
-# Cleaning legacy permissions
-if ynh_legacy_permissions_exists; then
-	ynh_legacy_permissions_delete_all
-
-	ynh_app_setting_delete --app=$app --key=is_public
-fi
-
-#=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..."
+ynh_script_progression --message="Making sure dedicated system user exists..." --time --weight=1
 
 # Create a dedicated user (if not existing)
 ynh_system_user_create --username=$app --home_dir="$final_path"
@@ -90,19 +67,26 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-config="$final_path/.env"
-ynh_backup_if_checksum_is_different --file="$final_path/.env"
-
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_script_progression --message="Upgrading source files..."
+	ynh_script_progression --message="Upgrading source files..." --time --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
 fi
 
+# FIXME: this should be managed by the core in the future
+# Here, as a packager, you may have to tweak the ownerhsip/permissions
+# such that the appropriate users (e.g. maybe www-data) can access
+# files in some cases.
+# But FOR THE LOVE OF GOD, do not allow r/x for "others" on the entire folder -
+# this will be treated as a security issue.
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
 #=================================================
-# UPGRADE DEPENDENCIES
+# NGINX CONFIGURATION
 #=================================================
 ynh_script_progression --message="Upgrading dependencies..."
 
@@ -135,15 +119,18 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 ynh_add_fpm_config --package="$extra_php_dependencies"
 
 #=================================================
-# SPECIFIC UPGRADE
-#=================================================
-# MODIFY A CONFIG FILE
+# UPDATE A CONFIG FILE
 #=================================================
 
- if [ "$upgrade_type" == "UPGRADE_APP" ]
- then
- 	ynh_add_config --template="../conf/default.env" --destination="$final_path/.env"
- fi
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_script_progression --message="Updating a configuration file..."
+
+	ynh_add_config --template="default.env" --destination="$final_path/.env"
+
+	chmod 400 "$final_path/.env"
+	chown $app:$app "$final_path/.env"
+fi
 
 #=================================================
 # UPGRADE DATABASE
