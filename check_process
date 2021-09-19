@@ -4,8 +4,8 @@
 		path="/path"
 		admin="john"
 		language="fr"
-                is_public=1
-                password="1Strong-Password"
+        is_public=1
+        password="1Strong-Password"
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=0
