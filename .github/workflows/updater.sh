@@ -98,7 +98,8 @@ SOURCE_URL=$asset_url
 SOURCE_SUM=$checksum
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=$extension
-SOURCE_IN_SUBDIR=true
+SOURCE_IN_SUBDIR=false
+SOURCE_FILENAME=invoiceninja.zip
 EOT
 echo "... conf/$src.src updated"
 
