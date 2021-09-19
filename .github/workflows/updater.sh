@@ -88,6 +88,8 @@ rm -rf $tempdir
 # Get extension
 if [[ $filename == *.tar.gz ]]; then
   extension=tar.gz
+elif [[ $filename == *.zip ]]; then
+  extension=zip
 else
   extension=${filename##*.}
 fi
