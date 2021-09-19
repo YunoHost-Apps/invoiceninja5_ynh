@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 
 
-**Version incluse :** 5.3.1~ynh1
+**Version incluse :** 5.3.15~ynh1
 
 **Démo :** https://app.invoiceninja.com/dashboard
 
