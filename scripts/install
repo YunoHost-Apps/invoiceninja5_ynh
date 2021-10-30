@@ -125,11 +125,14 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Modifying a config file..."
 
+ynh_add_config --template="default.env" --destination="$final_path/.env"
+
 # generate app key and save it as a environment variable
-app_key="php$phpversion artisan key:generate --show"
+pushd "$final_path"
+	app_key="`php$phpversion artisan key:generate --show`"
+popd
 ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 
-ynh_add_config --template="default.env" --destination="$final_path/.env"
 
 chmod 400 "$final_path/.env"
 chown $app:$app "$final_path/.env"
