@@ -125,6 +125,10 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Modifying a config file..."
 
+# generate app key and save it as a environment variable
+app_key="php$phpversion artisan key:generate --show"
+ynh_app_setting_set --app=$app --key=app_key --value=$app_key
+
 ynh_add_config --template="default.env" --destination="$final_path/.env"
 
 chmod 400 "$final_path/.env"
@@ -144,7 +148,6 @@ ynh_script_progression --message="Building the application..."
 
 pushd "$final_path"
 	# Run the database migrations and initially fill the db
-	php$phpversion artisan key:generate --no-interaction --verbose
 	php$phpversion artisan migrate:fresh --seed --no-interaction --verbose --force
 	php$phpversion artisan ninja:create-account --email $email --password changeme --no-interaction --verbose
 	php$phpversion artisan optimize --no-interaction --verbose
