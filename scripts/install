@@ -26,7 +26,7 @@ admin=$YNH_APP_ARG_ADMIN
 language=$YNH_APP_ARG_LANGUAGE
 is_public=$YNH_APP_ARG_IS_PUBLIC
 password=$YNH_APP_ARG_PASSWORD
-
+phpversion=$YNH_PHP_VERSION
 app=$YNH_APP_INSTANCE_NAME
 
 api_secret="$(ynh_string_random --length=32)"
