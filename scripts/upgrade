@@ -21,6 +21,7 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
@@ -32,7 +33,6 @@ phantomjs_key=$(ynh_app_setting_get --app=$app --key=phantomjs_key)
 email_firstname=$(ynh_app_setting_get --app=$app --key=email_firstname)
 email_lastname=$(ynh_app_setting_get --app=$app --key=email_lastname)
 email=$(ynh_app_setting_get --app=$app --key=email)
-
 
 #=================================================
 # CHECK VERSION
@@ -74,12 +74,6 @@ then
 	ynh_setup_source --dest_dir="$final_path" --keep=".env"
 fi
 
-# FIXME: this should be managed by the core in the future
-# Here, as a packager, you may have to tweak the ownerhsip/permissions
-# such that the appropriate users (e.g. maybe www-data) can access
-# files in some cases.
-# But FOR THE LOVE OF GOD, do not allow r/x for "others" on the entire folder -
-# this will be treated as a security issue.
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
@@ -107,15 +101,14 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
-# Create a dedicated php-fpm config
-ynh_add_fpm_config --package="$extra_php_dependencies"
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config
 
 #=================================================
 # UPDATE A CONFIG FILE

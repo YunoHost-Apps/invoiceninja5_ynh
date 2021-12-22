@@ -36,12 +36,6 @@
                 "type": "domain"
             },
             {
-                "name": "path",
-                "type": "path",
-                "example": "/",
-                "default": "/"
-            },
-            {
                 "name": "admin",
                 "type": "user"
             },
