@@ -25,6 +25,7 @@ path_url="/"
 admin=$YNH_APP_ARG_ADMIN
 language=$YNH_APP_ARG_LANGUAGE
 is_public=$YNH_APP_ARG_IS_PUBLIC
+password=$YNH_APP_ARG_PASSWORD
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -128,20 +129,13 @@ ynh_script_progression --message="Modifying a config file..."
 ynh_add_config --template="default.env" --destination="$final_path/.env"
 
 # generate app key and save it as a environment variable
-pushd "$final_path"
-	app_key="`php$phpversion artisan key:generate --show`"
-popd
-ynh_app_setting_set --app=$app --key=app_key --value=$app_key
+# pushd "$final_path"
+# 	app_key="`php$phpversion artisan key:generate --show`"
+# popd
+# ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 
 chmod 400 "$final_path/.env"
 chown $app:$app "$final_path/.env"
-
-#=================================================
-# STORE THE CHECKSUM OF THE CONFIG FILE
-#=================================================
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum --file="$final_path/.env"
 
 #=================================================
 # BUILD THE APPLICATION
@@ -151,7 +145,7 @@ ynh_script_progression --message="Building the application..."
 pushd "$final_path"
 	# Run the database migrations and initially fill the db
 	php$phpversion artisan migrate:fresh --seed --no-interaction --verbose --force
-	php$phpversion artisan ninja:create-account --email $email --password changeme --no-interaction --verbose
+	php$phpversion artisan ninja:create-account --email $email --password $password --no-interaction --verbose
 	php$phpversion artisan optimize --no-interaction --verbose
 	php$phpversion artisan view:clear
 	php$phpversion artisan cache:clear

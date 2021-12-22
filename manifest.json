@@ -15,7 +15,7 @@
         "userdoc": "https://invoiceninja.github.io/",
         "code": "https://github.com/invoiceninja/invoiceninja"
     },
-    "license": "AAL",
+    "license": "ELv2",
     "maintainer": {
         "name": "Sebastian Gumprich",
         "email": "yunohost AT gumpri DOT ch"
@@ -53,9 +53,13 @@
                 "name": "is_public",
                 "type": "boolean",
                 "default": true,
-		"help": {
-		  "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access"
-		}
+		        "help": {
+		            "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access"
+		        }
+            },
+            {
+                "name": "password",
+                "type": "password"
             }
         ]
     }
