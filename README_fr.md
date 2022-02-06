@@ -27,11 +27,10 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 This is the new version of InvoiceNinja. There are several things not working at the moment:
 
-* migration from v4
 * installation into a sub-directory
 * sending mails
 
-Invoice Ninja is the #1 open-source platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
+Invoice Ninja is the the leading self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 
 ## YunoHost specific features
 
