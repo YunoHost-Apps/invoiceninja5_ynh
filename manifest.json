@@ -59,7 +59,8 @@
             },
             {
                 "name": "password",
-                "type": "password"
+                "type": "password",
+                "help": "Password must contain an upper case character and a number."
             }
         ]
     }

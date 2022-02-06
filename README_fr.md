@@ -38,7 +38,7 @@ Invoice Ninja is the #1 open-source platform to create & email invoices, track p
 #### Multi-user support
 
 * There is no official LDAP support
-* The first user gets created after installing Invoice Ninja
+* The first user gets created after installing Invoice Ninja. The email-address is the one of your administrator user of the app. The password is the administration password you provided while installing.
 * Other users can be created from inside the application
 
 ## Documentations et ressources
