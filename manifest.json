@@ -8,14 +8,14 @@
     "version": "5.3.39~ynh1",
     "url": "https://invoiceninja.org",
     "upstream": {
-        "license": "ELv2",
+        "license": "Elastic-2.0",
         "website": "https://invoiceninja.org",
         "demo": "https://app.invoiceninja.com/dashboard",
         "admindoc": "https://invoiceninja.github.io/",
         "userdoc": "https://invoiceninja.github.io/",
         "code": "https://github.com/invoiceninja/invoiceninja"
     },
-    "license": "ELv2",
+    "license": "Elastic-2.0",
     "maintainer": {
         "name": "Sebastian Gumprich",
         "email": "yunohost AT gumpri DOT ch"
@@ -54,7 +54,8 @@
                 "type": "boolean",
                 "default": true,
 		        "help": {
-		            "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access"
+		            "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access",
+                    "fr": "Puisque vos clients doivent avoir la possibilité d'accéder à vos factures, l'application est publique. Si vous souhaitez uniquement envoyer des factures par courrier (ou pas du tout), désactivez l'accès public"
 		        }
             },
             {
