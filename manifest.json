@@ -3,54 +3,41 @@
     "id": "invoiceninja5",
     "packaging_format": 1,
     "description": {
-        "en": "Create and email invoices, track payments and expenses, and time tasks"
+        "en": "Create and email invoices, track payments, expenses, and time tasks"
     },
-    "version": "5.0.35~ynh1",
+    "version": "5.3.39~ynh1",
     "url": "https://invoiceninja.org",
-    "license": "AAL",
+    "upstream": {
+        "license": "Elastic-2.0",
+        "website": "https://invoiceninja.org",
+        "demo": "https://app.invoiceninja.com/dashboard",
+        "admindoc": "https://invoiceninja.github.io/",
+        "userdoc": "https://invoiceninja.github.io/",
+        "code": "https://github.com/invoiceninja/invoiceninja"
+    },
+    "license": "Elastic-2.0",
     "maintainer": {
         "name": "Sebastian Gumprich",
-        "email": "yunohost AT gumpri DOT ch",
-        "url": "https://github.com/YunoHost-Apps/invoiceninja5_ynh/"
+        "email": "yunohost AT gumpri DOT ch"
     },
     "requirements": {
-        "yunohost": ">= 3.5"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm",
+        "php7.4-fpm",
         "mysql"
     ],
     "arguments": {
         "install" : [
             {
                 "name": "domain",
-                "type": "domain",
-                "ask": {
-                    "en": "Choose a domain name for InvoiceNinja",
-                    "fr": "Choisissez un nom de domaine pour InvoiceNinja"
-                },
-                "example": "example.com"
-            },
-            {
-                "name": "path",
-                "type": "path",
-                "ask": {
-                    "en": "Choose a path for InvoiceNinja. Seule l'installation dans le répertoire racine est possible",
-                    "fr": "Choisissez un chemin pour InvoiceNinja. Only installation in root is currently working"
-                },
-                "example": "/",
-                "default": "/"
+                "type": "domain"
             },
             {
                 "name": "admin",
-                "type": "user",
-                "ask": {
-                    "en": "Choose an admin user",
-                    "fr": "Choisissez l'administrateur"
-                },
-                "example": "johndoe"
+                "type": "user"
             },
             {
                 "name": "language",
@@ -61,6 +48,20 @@
                 },
                 "choices": ["fr", "en"],
                 "default": "en"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "default": true,
+		        "help": {
+		            "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access",
+                    "fr": "Puisque vos clients doivent avoir la possibilité d'accéder à vos factures, l'application est publique. Si vous souhaitez uniquement envoyer des factures par courrier (ou pas du tout), désactivez l'accès public"
+		        }
+            },
+            {
+                "name": "password",
+                "type": "password",
+                "help": "Password must contain an upper case character and a number."
             }
         ]
     }
