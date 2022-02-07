@@ -1,1 +1,0 @@
-* * * * * __USER__ /usr/bin/php__YNH_PHP_VERSION__ __DESTDIR__/artisan schedule:run >> /dev/null 2>&1
