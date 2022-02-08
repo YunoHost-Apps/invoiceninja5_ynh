@@ -19,7 +19,7 @@ Create and email invoices, track payments, expenses, and time tasks
 
 **Shipped version:** 5.3.39~ynh1
 
-**Demo:** https://demo.invoiceninja.com/
+**Demo:** https://app.invoiceninja.com/dashboard
 
 ## Screenshots
 
