@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires
 
-**Version incluse :** 5.3.56~ynh1
+**Version incluse :** 5.3.60~ynh1
 
 **Démo :** https://app.invoiceninja.com/dashboard
 
