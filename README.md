@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Create and email invoices, track payments, expenses, and time tasks
 
-**Shipped version:** 5.3.56~ynh1
+**Shipped version:** 5.3.60~ynh1
 
 **Demo:** https://app.invoiceninja.com/dashboard
 
@@ -29,10 +29,7 @@ Create and email invoices, track payments, expenses, and time tasks
 
 ### Warning
 
-This is the new version of InvoiceNinja. There are several things not working at the moment:
-
-* installation into a sub-directory
-* sending mails
+This is the new version of InvoiceNinja. Installation into a sub-directory is currently impossible.
 
 Invoice Ninja is the the leading self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 

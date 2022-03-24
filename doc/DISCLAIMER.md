@@ -1,9 +1,6 @@
 ### Warning
 
-This is the new version of InvoiceNinja. There are several things not working at the moment:
-
-* installation into a sub-directory
-* sending mails
+This is the new version of InvoiceNinja. Installation into a sub-directory is currently impossible.
 
 Invoice Ninja is the the leading self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 
