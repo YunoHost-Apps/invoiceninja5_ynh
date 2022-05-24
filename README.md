@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # InvoiceNinja 5 for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![Working status](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)  
 [![Install InvoiceNinja 5 with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=invoiceninja5)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -23,7 +23,7 @@ Create and email invoices, track payments, expenses, and time tasks
 
 ## Screenshots
 
-![](./doc/screenshots/Create-Invoices-in-Seconds.png)
+![Screenshot of InvoiceNinja 5](./doc/screenshots/Create-Invoices-in-Seconds.png)
 
 ## Disclaimers / important information
 
@@ -43,22 +43,23 @@ Invoice Ninja is the the leading self-hosted invoicing platform to create & emai
 
 ## Documentation and resources
 
-* Official app website: https://invoiceninja.org
-* Official user documentation: https://invoiceninja.github.io/
-* Official admin documentation: https://invoiceninja.github.io/
-* Upstream app code repository: https://github.com/invoiceninja/invoiceninja
-* YunoHost documentation for this app: https://yunohost.org/app_invoiceninja5
-* Report a bug: https://github.com/YunoHost-Apps/invoiceninja5_ynh/issues
+* Official app website: <https://invoiceninja.org>
+* Official user documentation: <https://invoiceninja.github.io/>
+* Official admin documentation: <https://invoiceninja.github.io/>
+* Upstream app code repository: <https://github.com/invoiceninja/invoiceninja>
+* YunoHost documentation for this app: <https://yunohost.org/app_invoiceninja5>
+* Report a bug: <https://github.com/YunoHost-Apps/invoiceninja5_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade invoiceninja5 -u https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>
