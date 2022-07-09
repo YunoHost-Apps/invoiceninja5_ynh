@@ -6,7 +6,7 @@
         "en": "Create and email invoices, track payments, expenses, and time tasks",
         "fr": "Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires"
     },
-    "version": "5.3.60~ynh1",
+    "version": "5.4.9~ynh1",
     "url": "https://invoiceninja.org",
     "upstream": {
         "license": "Elastic-2.0",
@@ -31,7 +31,7 @@
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
                 "type": "domain"
@@ -47,17 +47,20 @@
                     "en": "Choose the application language",
                     "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["fr", "en"],
+                "choices": [
+                    "fr",
+                    "en"
+                ],
                 "default": "en"
             },
             {
                 "name": "is_public",
                 "type": "boolean",
                 "default": true,
-		        "help": {
-		            "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access",
+                "help": {
+                    "en": "Since your clients should have the possibility to access your invoices, the app is public. If you only want to send invoices via mail (or not at all), deactivate public access",
                     "fr": "Puisque vos clients doivent avoir la possibilité d'accéder à vos factures, l'application est publique. Si vous souhaitez uniquement envoyer des factures par courrier (ou pas du tout), désactivez l'accès public"
-		        }
+                }
             },
             {
                 "name": "password",
