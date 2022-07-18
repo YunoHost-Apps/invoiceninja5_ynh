@@ -8,6 +8,7 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
+source ynh_send_readme_to_admin__2
 
 #=================================================
 # MANAGE SCRIPT FAILURE
@@ -181,6 +182,13 @@ fi
 ynh_script_progression --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
+
+#=================================================
+# SEND A README FOR THE ADMIN
+#=================================================
+ynh_script_progression --message="Sending a readme for the admin..."
+
+ynh_send_readme_to_admin --app_message="../conf/msg_install" --recipients=$email --type='install'
 
 #=================================================
 # END OF SCRIPT
