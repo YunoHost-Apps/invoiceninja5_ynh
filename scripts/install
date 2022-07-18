@@ -6,9 +6,9 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
+source ynh_send_readme_to_admin__2
 source _common.sh
 source /usr/share/yunohost/helpers
-source ynh_send_readme_to_admin__2
 
 #=================================================
 # MANAGE SCRIPT FAILURE
