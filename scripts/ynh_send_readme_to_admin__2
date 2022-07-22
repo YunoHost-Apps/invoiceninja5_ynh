@@ -53,7 +53,7 @@ ynh_send_readme_to_admin() {
 	recipients=$(find_mails "$recipients")
 
 	# Subject base
-	local mail_subject="☁️🆈🅽🅷☁️: \`$app\`"
+	local mail_subject="\`$app\`"
 
 	# Adapt the subject according to the type of mail required.
 	if [ "$type" = "backup" ]; then
