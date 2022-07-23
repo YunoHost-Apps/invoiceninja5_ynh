@@ -131,17 +131,21 @@ fi
 ynh_script_progression --message="Upgrading the database..."
 
 pushd "$final_path"
-	# Put the application into maintenance mode
-	php$phpversion artisan down --no-interaction --verbose
-
-	# Optimize the framework for better performance
-	php$phpversion artisan optimize --no-interaction --verbose
+	# Clear caches
+	# https://github.com/invoiceninja/invoiceninja/issues/7397
+	rm -fr bootstrap/cache/*
+	rm -fr storage/framework/cache/*
+	rm -fr storage/framework/sessions/*
 
 	# Run the database migrations
 	php$phpversion artisan migrate --force --no-interaction --verbose
 
-	# Bring the application out of maintenance mode
-	php$phpversion artisan up --no-interaction --verbose
+	# Optimize the framework for better performance
+	php$phpversion artisan optimize --no-interaction --verbose
+
+	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
+	php$phpversion artisan view:clear
+	php$phpversion artisan cache:clear
 popd
 
 chmod 750 "$final_path"
