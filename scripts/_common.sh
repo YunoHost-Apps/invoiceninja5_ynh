@@ -4,7 +4,7 @@
 # COMMON VARIABLES
 #=================================================
 
-YNH_PHP_VERSION="7.4"
+YNH_PHP_VERSION="8.1"
 
 # dependencies used by the app
 
