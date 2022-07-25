@@ -133,9 +133,7 @@ ynh_script_progression --message="Upgrading the database..."
 pushd "$final_path"
 	# Clear caches
 	# https://github.com/invoiceninja/invoiceninja/issues/7397
-	rm -fr bootstrap/cache/*
-	rm -fr storage/framework/cache/*
-	rm -fr storage/framework/sessions/*
+	ynh_secure_remove bootstrap/cache/* storage/framework/cache/* storage/framework/sessions/*
 
 	# Run the database migrations
 	php$phpversion artisan migrate --force --no-interaction --verbose
