@@ -21,7 +21,7 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+phpversion=$YNH_PHP_VERSION
 
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
@@ -133,9 +133,15 @@ ynh_script_progression --message="Upgrading the database..."
 pushd "$final_path"
 	# Clear caches
 	# https://github.com/invoiceninja/invoiceninja/issues/7397
-	ynh_secure_remove --file=bootstrap/cache/*
-	ynh_secure_remove --file=storage/framework/cache/*
-	ynh_secure_remove --file=storage/framework/sessions/*
+	ynh_secure_remove --file=$final_path/bootstrap/cache/
+	ynh_secure_remove --file=$final_path/storage/framework/cache/
+	ynh_secure_remove --file=$final_path/storage/framework/sessions/
+
+	mkdir -p $final_path/bootstrap/cache/ $final_path/storage/framework/cache/ $final_path/storage/framework/sessions/
+
+	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
+	php$phpversion artisan view:clear
+	php$phpversion artisan cache:clear
 
 	# Run the database migrations
 	php$phpversion artisan migrate --force --no-interaction --verbose
