@@ -19,7 +19,6 @@ Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses e
 
 **Version incluse :** 5.5.14~ynh1
 
-
 **Démo :** https://app.invoiceninja.com/dashboard
 
 ## Captures d'écran
