@@ -17,7 +17,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires
 
-**Version incluse :** 5.5.25~ynh1 *(:warning: Il s'agit de la branche `ci-auto-update-v5.5.25`. La [branche `master`](https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/master) utilisée dans le catalogue est actuellement en 5.5.24\~ynh1.)*
+**Version incluse :** 5.5.25~ynh1 *(:warning: Il s'agit de la branche `testing`. La [branche `master`](https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/master) utilisée dans le catalogue est actuellement en 5.5.24\~ynh1.)*
 
 
 **Démo :** https://app.invoiceninja.com/dashboard
