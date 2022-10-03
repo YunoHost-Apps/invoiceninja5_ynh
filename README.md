@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Create and email invoices, track payments, expenses, and time tasks
 
-**Shipped version:** 5.5.24~ynh1
+**Shipped version:** 5.5.25~ynh1 *(:warning: This is the `ci-auto-update-v5.5.25` branch. The [`master` branch](https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/master) used in the catalog is currently on version 5.5.24\~ynh1.)*
 
 
 **Demo:** https://app.invoiceninja.com/dashboard
