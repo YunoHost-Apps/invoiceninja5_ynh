@@ -5,25 +5,25 @@ It shall NOT be edited by hand.
 
 # InvoiceNinja 5 pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
 [![Installer InvoiceNinja 5 avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=invoiceninja5)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer InvoiceNinja 5 rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer InvoiceNinja 5 rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires
 
-**Version incluse :** 5.5.41~ynh1
+**Version incluse :** 5.5.64~ynh1
 
 **Démo :** https://app.invoiceninja.com/dashboard
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de InvoiceNinja 5](./doc/screenshots/Create-Invoices-in-Seconds.png)
+![Capture d’écran de InvoiceNinja 5](./doc/screenshots/Create-Invoices-in-Seconds.png)
 
 ## Avertissements / informations importantes
 
@@ -43,10 +43,10 @@ Invoice Ninja is the the leading self-hosted invoicing platform to create & emai
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://invoiceninja.org>
+* Site officiel de l’app : <https://invoiceninja.org>
 * Documentation officielle utilisateur : <https://invoiceninja.github.io/>
-* Documentation officielle de l'admin : <https://invoiceninja.github.io/>
-* Dépôt de code officiel de l'app : <https://github.com/invoiceninja/invoiceninja>
+* Documentation officielle de l’admin : <https://invoiceninja.github.io/>
+* Dépôt de code officiel de l’app : <https://github.com/invoiceninja/invoiceninja>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_invoiceninja5>
 * Signaler un bug : <https://github.com/YunoHost-Apps/invoiceninja5_ynh/issues>
 
@@ -62,4 +62,4 @@ ou
 sudo yunohost app upgrade invoiceninja5 -u https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
