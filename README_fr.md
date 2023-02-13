@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # InvoiceNinja 5 pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
+
 [![Installer InvoiceNinja 5 avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=invoiceninja5)
 
 *[Read this readme in english.](./README.md)*
@@ -17,7 +18,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires
 
-**Version incluse :** 5.5.64~ynh1
+**Version incluse :** 5.5.70~ynh1
 
 **Démo :** https://app.invoiceninja.com/dashboard
 

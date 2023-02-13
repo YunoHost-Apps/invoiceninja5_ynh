@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # InvoiceNinja 5 for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![Working status](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
+
 [![Install InvoiceNinja 5 with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=invoiceninja5)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -17,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Create and email invoices, track payments, expenses, and time tasks
 
-**Shipped version:** 5.5.64~ynh1
+**Shipped version:** 5.5.70~ynh1
 
 **Demo:** https://app.invoiceninja.com/dashboard
 
