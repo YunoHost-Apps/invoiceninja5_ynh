@@ -18,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Create and email invoices, track payments, expenses, and time tasks
 
-**Shipped version:** 5.5.70~ynh1
+**Shipped version:** 5.5.71~ynh1
 
 **Demo:** https://app.invoiceninja.com/dashboard
 
