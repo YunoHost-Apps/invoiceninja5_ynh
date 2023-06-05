@@ -16,7 +16,8 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires
+Invoice Ninja is the the leading self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
+
 
 **Version incluse :** 5.5.124~ynh1
 
@@ -25,22 +26,6 @@ Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses e
 ## Captures d’écran
 
 ![Capture d’écran de InvoiceNinja 5](./doc/screenshots/Create-Invoices-in-Seconds.png)
-
-## Avertissements / informations importantes
-
-### Warning
-
-This is the new version of InvoiceNinja. Installation into a sub-directory is currently impossible.
-
-Invoice Ninja is the the leading self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
-
-## YunoHost specific features
-
-#### Multi-user support
-
-* There is no official LDAP support
-* The first user gets created after installing Invoice Ninja. The email-address is the one of your administrator user of the app. The password is the administration password you provided while installing.
-* Other users can be created from inside the application
 
 ## Documentations et ressources
 
