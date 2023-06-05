@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/invoiceninja/invoiceninja/releases/download/v5.5.122/invoiceninja.zip
-SOURCE_SUM=29fb4ab5fa0b65bfee610d82a6b20a1625acaeea2f91ea9718d2993fac34b9a8
+SOURCE_URL=https://github.com/invoiceninja/invoiceninja/releases/download/v5.5.124/invoiceninja.zip
+SOURCE_SUM=484b2a927a2249d7707ad96c5fa44b61d8daa0b7a052aaf13421dee1e6ff6fc7
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=false
