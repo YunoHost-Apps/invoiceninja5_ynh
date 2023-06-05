@@ -16,9 +16,9 @@ source /usr/share/yunohost/helpers
 api_secret="$(ynh_string_random --length=32)"
 app_key="$(ynh_string_random --length=32)"
 phantomjs_key="$(ynh_string_random --length=32)"
-email_firstname="$(ynh_user_get_info $admin firstname)"
-email_lastname="$(ynh_user_get_info $admin lastname)"
-email="$(ynh_user_get_info $admin mail)"
+email_firstname="$(ynh_user_get_info --username=$admin --key=firstname)"
+email_lastname="$(ynh_user_get_info --username=$admin --key=lastname)"
+email="$(ynh_user_get_info --username=$admin --key=mail)"
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
