@@ -21,7 +21,7 @@ upgrade_type=$(ynh_check_app_version_changed)
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_script_progression --message="Upgrading source files..."
+	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" --keep=".env"
@@ -31,31 +31,27 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
-# ADD A CRON JOB
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Adding a cron job..."
-
-ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
-
-#=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..."
+ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
+
+ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+chown root: "/etc/cron.d/$app"
+chmod 644 "/etc/cron.d/$app"
+
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-       ynh_script_progression --message="Updating a configuration file..."
+       ynh_script_progression --message="Updating a configuration file..." --weight=1
 
        ynh_add_config --template="default.env" --destination="$install_dir/.env"
 
@@ -66,8 +62,7 @@ fi
 #=================================================
 # UPGRADE DATABASE
 #=================================================
-
-ynh_script_progression --message="Upgrading the database..."
+ynh_script_progression --message="Upgrading the database..." --weight=1
 
 pushd "$install_dir"
 	# Clear caches

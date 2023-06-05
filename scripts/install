@@ -35,16 +35,16 @@ ynh_app_setting_set --app=$app --key=email --value=$email
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..."
+ynh_script_progression --message="Setting up source files..." --weight=1
 
 ynh_setup_source --dest_dir="$install_dir"
 
 chown -R $app:www-data "$install_dir"
 
 #=================================================
-# PHP-FPM CONFIGURATION
+# SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring PHP-FPM..."
+ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low
@@ -57,7 +57,7 @@ ynh_add_nginx_config
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Modifying a config file..."
+ynh_script_progression --message="Modifying a config file..." --weight=1
 
 ynh_add_config --template="default.env" --destination="$install_dir/.env"
 
@@ -67,7 +67,7 @@ chown $app:$app "$install_dir/.env"
 #=================================================
 # BUILD THE APPLICATION
 #=================================================
-ynh_script_progression --message="Building the application..."
+ynh_script_progression --message="Building the application..." --weight=1
 
 pushd "$install_dir"
 	# Run the database migrations and initially fill the db
@@ -89,7 +89,7 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 # ADD A CRON JOB
 #=================================================
-ynh_script_progression --message="Adding a cron job..."
+ynh_script_progression --message="Adding a cron job..." --weight=1
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
