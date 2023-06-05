@@ -23,8 +23,8 @@ ynh_change_url_nginx_config
 #=================================================
 ynh_script_progression --message="Modifying a config file..." --weight=1
 
-ynh_replace_string --match_string="$old_domain$old_path" --replace_string="$new_domain$new_path" --target_file="$final_path/.env"
-ynh_store_file_checksum --file="$final_path/.env"
+ynh_replace_string --match_string="$old_domain$old_path" --replace_string="$new_domain$new_path" --target_file="$install_dir/.env"
+ynh_store_file_checksum --file="$install_dir/.env"
 
 #=================================================
 # END OF SCRIPT
