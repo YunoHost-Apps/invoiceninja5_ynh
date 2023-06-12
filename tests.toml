@@ -1,0 +1,9 @@
+test_format = 1.0
+
+[default]
+
+    # -------------------------------
+    # Commits to test upgrade from
+    # -------------------------------
+
+    test_upgrade_from.0e2b033a71b7401e7b1e0180780cc0096f1834a5.name = "Upgrade from 5.5.122"

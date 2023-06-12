@@ -10,57 +10,10 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# LOAD SETTINGS
-#=================================================
-ynh_script_progression --message="Loading installation settings..."=1
-
-app=$YNH_APP_INSTANCE_NAME
-
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-admin=$(ynh_app_setting_get --app=$app --key=admin)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-language=$(ynh_app_setting_get --app=$app --key=language)
-phpversion=$YNH_PHP_VERSION
-
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
-db_user=$db_name
-
-api_secret=$(ynh_app_setting_get --app=$app --key=api_secret)
-app_key=$(ynh_app_setting_get --app=$app --key=app_key)
-phantomjs_key=$(ynh_app_setting_get --app=$app --key=phantomjs_key)
-email_firstname=$(ynh_app_setting_get --app=$app --key=email_firstname)
-email_lastname=$(ynh_app_setting_get --app=$app --key=email_lastname)
-email=$(ynh_app_setting_get --app=$app --key=email)
-
-#=================================================
 # CHECK VERSION
 #=================================================
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..."
-
-# Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
-	# Restore it if the upgrade fails
-	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..."=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -68,47 +21,29 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_script_progression --message="Upgrading source files..."
+	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --keep=".env"
+	ynh_setup_source --dest_dir="$install_dir" --keep=".env"
 fi
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
-# NGINX CONFIGURATION
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading dependencies..."
+ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
 
-ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# ADD A CRON JOB
-#=================================================
-ynh_script_progression --message="Adding a cron job..."
-
-ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
-
-#=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..."
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config --usage=low --footprint=low
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
 
-#=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression --message="Upgrading PHP-FPM configuration..."
-
-# Create a dedicated PHP-FPM config
-ynh_add_fpm_config
+ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+chown root: "/etc/cron.d/$app"
+chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # UPDATE A CONFIG FILE
@@ -116,28 +51,27 @@ ynh_add_fpm_config
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-       ynh_script_progression --message="Updating a configuration file..."
+       ynh_script_progression --message="Updating a configuration file..." --weight=1
 
-       ynh_add_config --template="default.env" --destination="$final_path/.env"
+       ynh_add_config --template="default.env" --destination="$install_dir/.env"
 
-       chmod 400 "$final_path/.env"
-       chown $app:$app "$final_path/.env"
+       chmod 400 "$install_dir/.env"
+       chown $app:$app "$install_dir/.env"
 fi
 
 #=================================================
 # UPGRADE DATABASE
 #=================================================
+ynh_script_progression --message="Upgrading the database..." --weight=1
 
-ynh_script_progression --message="Upgrading the database..."
-
-pushd "$final_path"
+pushd "$install_dir"
 	# Clear caches
 	# https://github.com/invoiceninja/invoiceninja/issues/7397
-	ynh_secure_remove --file=$final_path/bootstrap/cache/
-	ynh_secure_remove --file=$final_path/storage/framework/cache/
-	ynh_secure_remove --file=$final_path/storage/framework/sessions/
+	ynh_secure_remove --file=$install_dir/bootstrap/cache/
+	ynh_secure_remove --file=$install_dir/storage/framework/cache/
+	ynh_secure_remove --file=$install_dir/storage/framework/sessions/
 
-	mkdir -p $final_path/bootstrap/cache/ $final_path/storage/framework/cache/ $final_path/storage/framework/sessions/
+	mkdir -p $install_dir/bootstrap/cache/ $install_dir/storage/framework/cache/ $install_dir/storage/framework/sessions/
 
 	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
 	php$phpversion artisan view:clear
@@ -158,16 +92,9 @@ pushd "$final_path"
 	php$phpversion vendor/bin/snappdf download
 popd
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..."
-
-ynh_systemd_action --service_name=nginx --action=reload
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # END OF SCRIPT
