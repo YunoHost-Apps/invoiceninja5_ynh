@@ -55,11 +55,10 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/invoiceninja/invoiceninja/archive/refs/tags/v5.6.2.tar.gz"
-        sha256 = "3e946d4a9f00f254221c455f9b986f357b50c4621d54cb60e11ed4c147f176bf"
+        url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.6.2/invoiceninja.zip"
+        sha256 = "ba4dcd9a02602aae61bbe5b002fbc232f88026f5ccdd3347d6b37dfd2fbc983e"
         in_subdir = false
-        rename = "invoiceninja.zip"
-        autoupdate.strategy = "latest_github_tag"
+        autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
 
