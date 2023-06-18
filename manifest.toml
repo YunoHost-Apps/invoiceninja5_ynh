@@ -59,6 +59,7 @@ ram.runtime = "50M"
         sha256 = "ba4dcd9a02602aae61bbe5b002fbc232f88026f5ccdd3347d6b37dfd2fbc983e"
         in_subdir = false
         autoupdate.strategy = "latest_github_release"
+        autoupdate.asset = "invoiceninja.zip" 
 
     [resources.system_user]
 
