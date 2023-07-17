@@ -21,7 +21,7 @@ Invoice Ninja is the the leading self-hosted invoicing platform to create & emai
 
 **Shipped version:** 5.6.19~ynh1
 
-**Demo:** [https://demo.invoiceninja.com](https://demo.invoiceninja.com)
+**Demo:** [https://react.invoicing.co/dashboard](https://react.invoicing.co/dashboard)
 
 ## Screenshots
 
