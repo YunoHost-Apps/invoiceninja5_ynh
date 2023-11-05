@@ -18,6 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Invoice Ninja is the the leading self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 
+
 **Shipped version:** 5.7.44~ynh1
 
 **Demo:** https://react.invoicing.co/demo
