@@ -38,7 +38,7 @@ ynh_script_progression --message="Upgrading system configurations related to $ap
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config
 
-# Create a dedicated nginx config
+# Create a dedicated NGINX config
 ynh_add_nginx_config
 
 ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
