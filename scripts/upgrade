@@ -46,23 +46,21 @@ chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
 
 #=================================================
-# UPDATE APP SETTINGS
+# ENSURE BACKWARD COMPATIBILITY
 #=================================================
+ynh_script_progression --message="Ensuring backward compatibility..." --weight=1
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	# Delete deprecated `firstname`/`lastname` 'null' settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
-	ynh_app_setting_delete --app=$app --key=email_firstname
-	ynh_app_setting_delete --app=$app --key=email_lastname
+# Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
+ynh_app_setting_delete --app=$app --key=email_firstname
+ynh_app_setting_delete --app=$app --key=email_lastname
 
-	# Retrieve admin user settings
-	email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
-	email="$(ynh_user_get_info --username=$admin --key=mail)" # include as admin's email address is also subject to change
+# Retrieve `$admin` user settings
+email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
+email="$(ynh_user_get_info --username=$admin --key=mail)" # include as admin's email address is also subject to change
 
-	# Set
-	ynh_app_setting_set --app=$app --key=email_fullname --value="$email_fullname"
-	ynh_app_setting_set --app=$app --key=email --value=$email
-fi
+# Store app settings so app state is consistent with a fresh install
+ynh_app_setting_set --app=$app --key=email_fullname --value="$email_fullname"
+ynh_app_setting_set --app=$app --key=email --value=$email
 
 #=================================================
 # UPDATE A CONFIG FILE
