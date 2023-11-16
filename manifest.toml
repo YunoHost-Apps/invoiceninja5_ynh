@@ -65,6 +65,7 @@ ram.runtime = "50M"
         autoupdate.asset = "invoiceninja.zip"
 
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
 
