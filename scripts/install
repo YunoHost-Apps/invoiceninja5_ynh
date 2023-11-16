@@ -16,8 +16,7 @@ source /usr/share/yunohost/helpers
 api_secret="$(ynh_string_random --length=32)"
 app_key="$(ynh_string_random --length=32)"
 phantomjs_key="$(ynh_string_random --length=32)"
-email_firstname="$(ynh_user_get_info --username=$admin --key=firstname)"
-email_lastname="$(ynh_user_get_info --username=$admin --key=lastname)"
+email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
 email="$(ynh_user_get_info --username=$admin --key=mail)"
 
 #=================================================
@@ -28,8 +27,7 @@ ynh_script_progression --message="Storing installation settings..."
 ynh_app_setting_set --app=$app --key=api_secret --value=$api_secret
 ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 ynh_app_setting_set --app=$app --key=phantomjs_key --value=$phantomjs_key
-ynh_app_setting_set --app=$app --key=email_firstname --value="$email_firstname"
-ynh_app_setting_set --app=$app --key=email_lastname --value="$email_lastname"
+ynh_app_setting_set --app=$app --key=email_fullname --value="$email_fullname"
 ynh_app_setting_set --app=$app --key=email --value=$email
 
 #=================================================
