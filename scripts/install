@@ -22,13 +22,10 @@ email="$(ynh_user_get_info --username=$admin --key=mail)"
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..."
 
 ynh_app_setting_set --app=$app --key=api_secret --value=$api_secret
 ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 ynh_app_setting_set --app=$app --key=phantomjs_key --value=$phantomjs_key
-ynh_app_setting_set --app=$app --key=email_fullname --value="$email_fullname"
-ynh_app_setting_set --app=$app --key=email --value=$email
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -37,6 +34,7 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 
 ynh_setup_source --dest_dir="$install_dir"
 
+chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
@@ -49,6 +47,10 @@ ynh_add_fpm_config
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
+
+ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
+chown root: "/etc/cron.d/$app"
+chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # SPECIFIC SETUP
@@ -83,15 +85,6 @@ popd
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-
-#=================================================
-# ADD A CRON JOB
-#=================================================
-ynh_script_progression --message="Adding a cron job..." --weight=1
-
-ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # END OF SCRIPT

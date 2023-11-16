@@ -16,6 +16,18 @@ source /usr/share/yunohost/helpers
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+
+# Delete deprecated `firstname`/`lastname` 'null' settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
+ynh_app_setting_delete --app=$app --key=email_firstname
+ynh_app_setting_delete --app=$app --key=email_lastname
+
+# Retrieve admin user settings
+email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
+email="$(ynh_user_get_info --username=$admin --key=mail)" # include as admin's email address is also subject to change
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
@@ -44,25 +56,6 @@ ynh_add_nginx_config
 ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
-
-#=================================================
-# UPDATE APP SETTINGS
-#=================================================
-
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	# Delete deprecated `firstname`/`lastname` 'null' settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
-	ynh_app_setting_delete --app=$app --key=email_firstname
-	ynh_app_setting_delete --app=$app --key=email_lastname
-
-	# Retrieve admin user settings
-	email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
-	email="$(ynh_user_get_info --username=$admin --key=mail)" # include as admin's email address is also subject to change
-
-	# Set
-	ynh_app_setting_set --app=$app --key=email_fullname --value="$email_fullname"
-	ynh_app_setting_set --app=$app --key=email --value=$email
-fi
 
 #=================================================
 # UPDATE A CONFIG FILE
