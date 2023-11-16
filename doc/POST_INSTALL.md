@@ -1,6 +1,6 @@
 Please open your __APP__ domain: https://__DOMAIN____PATH_URL__
 
-The username is: __EMAIL__
+The username is: your admin email
 The password is the administrator one you filled during the installation
 The secret is: __API_SECRET__
 
