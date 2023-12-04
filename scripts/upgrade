@@ -46,6 +46,20 @@ chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
 
 #=================================================
+# ENSURE BACKWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring backward compatibility..." --weight=1
+
+# Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
+ynh_app_setting_delete --app=$app --key=email_firstname
+ynh_app_setting_delete --app=$app --key=email_lastname
+ynh_app_setting_delete --app=$app --key=email # also delete unnecessary duplicate of state storage
+
+# Retrieve `$admin` user settings
+email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
+email="$(ynh_user_get_info --username=$admin --key=mail)"
+
+#=================================================
 # UPDATE A CONFIG FILE
 #=================================================
 
