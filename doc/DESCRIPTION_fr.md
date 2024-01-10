@@ -1,0 +1,1 @@
+Invoice Ninja est une plate-forme de facturation auto-hébergée permettant de créer et d'envoyer des factures par courrier électronique, de suivre les paiements et les dépenses, ainsi que de chronométrer les tâches et projets facturables pour les clients.
