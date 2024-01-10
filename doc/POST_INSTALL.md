@@ -1,4 +1,4 @@
-Please open your __APP__ domain: https://__DOMAIN____PATH_URL__
+Please open your __APP__ domain: https://__DOMAIN____PATH__
 
 The username is the administrator's email address
 The password is the administrator one you filled during the installation
