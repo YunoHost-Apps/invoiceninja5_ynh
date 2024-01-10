@@ -16,7 +16,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Invoice Ninja is the the leading self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
+Invoice Ninja est une plate-forme de facturation auto-hébergée permettant de créer et d'envoyer des factures par courrier électronique, de suivre les paiements et les dépenses, ainsi que de chronométrer les tâches et projets facturables pour les clients.
 
 
 **Version incluse :** 5.8.9~ynh1
