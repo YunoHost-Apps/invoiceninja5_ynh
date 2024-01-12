@@ -1,0 +1,2 @@
+* Le premier utilisateur est créé après l'installation d'InvoiceNinja. L'adresse e-mail est celle de votre utilisateur administrateur de l'application. Le mot de passe est le mot de passe d'administration que vous avez fourni lors de l'installation.
+* D'autres utilisateurs peuvent être créés depuis l'application
