@@ -5,7 +5,7 @@ name = "InvoiceNinja 5"
 description.en = "Create and email invoices, track payments, expenses, and time tasks"
 description.fr = "Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires"
 
-version = "5.8.13~ynh1"
+version = "5.8.14~ynh1"
 
 maintainers = ["Sebastian Gumprich"]
 
@@ -58,8 +58,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.8.13/invoiceninja.zip"
-        sha256 = "d23e5682bdd412358d3c1c574875b3154f7f20c034f8a2610d34eac50fcf7cde"
+        url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.8.14/invoiceninja.zip"
+        sha256 = "b0736f0c3b8b57680497ee2ff5d88675ae4a91df51abf494471e30f36ef94567"
         in_subdir = false
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "invoiceninja.zip"
