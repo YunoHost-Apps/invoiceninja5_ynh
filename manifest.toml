@@ -49,9 +49,21 @@ ram.runtime = "50M"
     type = "user"
 
     [install.password]
-    help.en = "Use the help field to add an information for the admin about this question."
-    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
+    help.en = "The password to login into InvoiceNinja."
+    help.fr = "Le mot de passe pour se connecter à InvoiceNinja."
     type = "password"
+
+    [install.default_from_email]
+    help.en = "Choose what name will be displayed when InvoiceNinja sends mails."
+    help.fr = ""
+    type = "email"
+    default = ""
+
+    [install.default_from_name]
+    help.en = "Choose from which mail-address mails will be send."
+    help.fr = ""
+    type = "string"
+    default = ""
 
 [resources]
 

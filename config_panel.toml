@@ -1,0 +1,16 @@
+version = "1.0"
+[main]
+	[main.config]
+	name = "Configuration"
+
+        [main.config.default_from_email]
+        ask = "from email"
+        type = "email"
+        help = "Default email address to use for various automated emails."
+        bind = "default_from_email:__INSTALL_DIR__/.env"
+
+        [main.config.default_from_name]
+        ask = "from name"
+        type = "name"
+        help = "Default name address to use for various automated names."
+        bind = "default_from_name:__INSTALL_DIR__/.env"

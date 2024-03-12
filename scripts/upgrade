@@ -53,12 +53,18 @@ ynh_script_progression --message="Ensuring backward compatibility..." --weight=1
 # Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
 ynh_app_setting_delete --app=$app --key=email_firstname
 ynh_app_setting_delete --app=$app --key=email_lastname
-ynh_app_setting_delete --app=$app --key=email # also delete unnecessary duplicate of state storage
 
-# Retrieve `$admin` user settings
-email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
-email="$(ynh_user_get_info --username=$admin --key=mail)"
+default_from_email=$(ynh_app_setting_get --app="$app" --key=default_from_email)
+if [ -z "$default_from_email" ]; then
+	default_from_email="${app}@${domain}"
+	ynh_app_setting_set --app="$app" --key=default_from_email --value="$default_from_email"
+fi
 
+default_from_name=$(ynh_app_setting_get --app="$app" --key=default_from_name)
+if [ -z "$default_from_name" ]; then
+	default_from_name="${app}@${domain}"
+	ynh_app_setting_set --app="$app" --key=default_from_name --value="$default_from_name"
+fi
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
