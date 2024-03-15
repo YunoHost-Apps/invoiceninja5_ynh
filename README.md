@@ -18,10 +18,9 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Invoice Ninja is a self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 
+**Shipped version:** 5.8.37~ynh1
 
-**Shipped version:** 5.8.30~ynh1
-
-**Demo:** https://react.invoicing.co/demo
+**Demo:** <https://react.invoicing.co/demo>
 
 ## Screenshots
 
@@ -29,12 +28,12 @@ Invoice Ninja is a self-hosted invoicing platform to create & email invoices, tr
 
 ## Documentation and resources
 
-* Official app website: <https://invoiceninja.org>
-* Official user documentation: <https://invoiceninja.github.io/>
-* Official admin documentation: <https://invoiceninja.github.io/>
-* Upstream app code repository: <https://github.com/invoiceninja/invoiceninja>
-* YunoHost Store: <https://apps.yunohost.org/app/invoiceninja5>
-* Report a bug: <https://github.com/YunoHost-Apps/invoiceninja5_ynh/issues>
+- Official app website: <https://invoiceninja.org>
+- Official user documentation: <https://invoiceninja.github.io/>
+- Official admin documentation: <https://invoiceninja.github.io/>
+- Upstream app code repository: <https://github.com/invoiceninja/invoiceninja>
+- YunoHost Store: <https://apps.yunohost.org/app/invoiceninja5>
+- Report a bug: <https://github.com/YunoHost-Apps/invoiceninja5_ynh/issues>
 
 ## Developer info
 
@@ -42,7 +41,7 @@ Please send your pull request to the [testing branch](https://github.com/YunoHos
 
 To try the testing branch, please proceed like that.
 
-``` bash
+```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade invoiceninja5 -u https://github.com/YunoHost-Apps/invoiceninja5_ynh/tree/testing --debug
