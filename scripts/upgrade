@@ -54,16 +54,16 @@ ynh_script_progression --message="Ensuring backward compatibility..." --weight=1
 ynh_app_setting_delete --app=$app --key=email_firstname
 ynh_app_setting_delete --app=$app --key=email_lastname
 
-default_from_email=$(ynh_app_setting_get --app="$app" --key=default_from_email)
-if [ -z "$default_from_email" ]; then
-	default_from_email="${app}@${domain}"
-	ynh_app_setting_set --app="$app" --key=default_from_email --value="$default_from_email"
+mail_from_name=$(ynh_app_setting_get --app="$app" --key=mail_from_name)
+if [ -z "$mail_from_name" ]; then
+	mail_from_name="${app}@${domain}"
+	ynh_app_setting_set --app="$app" --key=mail_from_name --value="$mail_from_name"
 fi
 
-default_from_name=$(ynh_app_setting_get --app="$app" --key=default_from_name)
-if [ -z "$default_from_name" ]; then
-	default_from_name="${app}@${domain}"
-	ynh_app_setting_set --app="$app" --key=default_from_name --value="$default_from_name"
+mail_from_sender=$(ynh_app_setting_get --app="$app" --key=mail_from_sender)
+if [ -z "$mail_from_sender" ]; then
+	mail_from_sender="${app}@${domain}"
+	ynh_app_setting_set --app="$app" --key=mail_from_sender --value="$mail_from_sender"
 fi
 #=================================================
 # UPDATE A CONFIG FILE
