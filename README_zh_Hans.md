@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 InvoiceNinja 5
+# YunoHost 上的 InvoiceNinja 5
 
 [![集成程度](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![工作状态](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
 
@@ -19,7 +19,7 @@
 Invoice Ninja is a self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 
 
-**分发版本：** 5.8.53~ynh1
+**分发版本：** 5.9.2~ynh1
 
 **演示：** <https://react.invoicing.co/demo>
 
