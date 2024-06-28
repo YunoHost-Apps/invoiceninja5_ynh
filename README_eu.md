@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # InvoiceNinja 5 YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://ci-apps.yunohost.org/ci/apps/invoiceninja5/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
 
 [![Instalatu InvoiceNinja 5 YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=invoiceninja5)
 

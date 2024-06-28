@@ -5,7 +5,7 @@ NON debe editarse manualmente.
 
 # InvoiceNinja 5 para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://dash.yunohost.org/appci/app/invoiceninja5) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://ci-apps.yunohost.org/ci/apps/invoiceninja5/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
 
 [![Instalar InvoiceNinja 5 con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=invoiceninja5)
 
