@@ -60,6 +60,7 @@ ram.runtime = "50M"
         [resources.sources.main]
         url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.10.4/invoiceninja.tar"
         sha256 = "1f57020738a3d735dc1d5b16da4f915886a184c099e78f96be7c2d9fa78b7d70"
+        format = "tar.gz"
         in_subdir = false
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "invoiceninja.tar"
