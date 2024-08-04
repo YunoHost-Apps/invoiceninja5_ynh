@@ -32,7 +32,7 @@ Invoice Ninja is a self-hosted invoicing platform to create & email invoices, tr
 - Website aplikasi resmi: <https://invoiceninja.org>
 - Dokumentasi pengguna resmi: <https://invoiceninja.github.io/>
 - Dokumentasi admin resmi: <https://invoiceninja.github.io/>
-- Repositori kode aplikasi hulu: <https://github.com/invoiceninja/invoiceninja>
+- Depot kode aplikasi hulu: <https://github.com/invoiceninja/invoiceninja>
 - Gudang YunoHost: <https://apps.yunohost.org/app/invoiceninja5>
 - Laporkan bug: <https://github.com/YunoHost-Apps/invoiceninja5_ynh/issues>
 
