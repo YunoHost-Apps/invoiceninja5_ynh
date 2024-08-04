@@ -16,10 +16,8 @@ source /usr/share/yunohost/helpers
 api_secret="$(ynh_string_random --length=32)"
 app_key="$(ynh_string_random --length=32)"
 phantomjs_key="$(ynh_string_random --length=32)"
-
-ynh_app_setting_set --app="$app" --key=MAIL_FROM_ADDRESS --value="$MAIL_FROM_ADDRESS"
-ynh_app_setting_set --app="$app" --key=MAIL_FROM_NAME --value="$MAIL_FROM_NAME"
-
+mail_address=$(ynh_app_setting_get --app=$mail_adress --key=smail_address)
+mail_name=$(ynh_app_setting_get --app=$mail_adress --key=mail_name)
 
 #=================================================
 # STORE KEYS TO APP SETTINGS
@@ -29,6 +27,8 @@ ynh_script_progression --message="Storing secrets to app settings..."
 ynh_app_setting_set --app=$app --key=api_secret --value=$api_secret
 ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 ynh_app_setting_set --app=$app --key=phantomjs_key --value=$phantomjs_key
+ynh_app_setting_set --app="$app" --key=mail_address --value="$mail_address"
+ynh_app_setting_set --app="$app" --key=mail_name --value="$mail_name"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -70,7 +70,7 @@ ynh_script_progression --message="Building the application..." --weight=1
 pushd "$install_dir"
 	# Run the database migrations and initially fill the db
 	php$phpversion artisan migrate:fresh --seed --no-interaction --verbose --force
-	php$phpversion artisan ninja:create-account --email $MAIL_FROM_ADDRESS --password "$password" --no-interaction --verbose
+	php$phpversion artisan ninja:create-account --email $mail_address --password "$password" --no-interaction --verbose
 	php$phpversion artisan optimize --no-interaction --verbose
 	php$phpversion artisan view:clear
 	php$phpversion artisan cache:clear

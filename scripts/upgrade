@@ -16,6 +16,21 @@ source /usr/share/yunohost/helpers
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+if [ -z "${mail_address:-}" ]; then
+	mail_address="true"
+	ynh_app_setting_set --app=$app --key=mail_address --value=$mail_address
+fi
+
+if [ -z "${mail_name:-}" ]; then
+	mail_name="true"
+	ynh_app_setting_set --app=$app --key=mail_name --value=$mail_name
+fi
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
