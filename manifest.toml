@@ -71,6 +71,10 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    api.url = "/api"
+    api.allowed = "visitors"
+    api.auth_header = false
+    api.show_tile = false
 
     [resources.apt]
     packages = "mariadb-server, php8.3-bcmath, php8.3-gmp, php8.3-fileinfo, php8.3-gd, php8.3-mbstring, php8.3-pdo, php8.3-xml, php8.3-curl, php8.3-zip, php8.3-mysql, libnss3-dev, libatk1.0-0, libatk-bridge2.0-0, libxcomposite1, libxrandr2, libasound2, libcups2, libdrm2, libxkbcommon0, libxdamage1, libxfixes3, libgbm1, libpango-1.0-0, libcairo2, chromium"
