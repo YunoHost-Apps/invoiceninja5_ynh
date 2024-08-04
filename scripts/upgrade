@@ -67,11 +67,11 @@ ynh_script_progression --message="Upgrading the database..." --weight=1
 pushd "$install_dir"
 	# Clear caches
 	# https://github.com/invoiceninja/invoiceninja/issues/7397
-	ynh_secure_remove --file=$install_dir/bootstrap/cache/
-	ynh_secure_remove --file=$install_dir/storage/framework/cache/
-	ynh_secure_remove --file=$install_dir/storage/framework/sessions/
+	#ynh_secure_remove --file=$install_dir/bootstrap/cache/
+	#ynh_secure_remove --file=$install_dir/storage/framework/cache/
+	#ynh_secure_remove --file=$install_dir/storage/framework/sessions/
 
-	mkdir -p $install_dir/bootstrap/cache/ $install_dir/storage/framework/cache/ $install_dir/storage/framework/sessions/
+	#mkdir -p $install_dir/bootstrap/cache/ $install_dir/storage/framework/cache/ $install_dir/storage/framework/sessions/
 
 	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
 	php$phpversion artisan view:clear
@@ -84,8 +84,8 @@ pushd "$install_dir"
 	php$phpversion artisan optimize --no-interaction --verbose
 
 	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
-	php$phpversion artisan view:clear
-	php$phpversion artisan cache:clear
+	#php$phpversion artisan view:clear
+	#php$phpversion artisan cache:clear
 popd
 
 chmod 750 "$install_dir"
