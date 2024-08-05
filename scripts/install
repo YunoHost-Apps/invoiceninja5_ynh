@@ -73,12 +73,6 @@ pushd "$install_dir"
 	php$phpversion artisan optimize --no-interaction --verbose
 	php$phpversion artisan view:clear
 	php$phpversion artisan cache:clear
-
-	# install snappdf, since it isn't included by default anymore since
-	# 5.5.12: https://invoiceninja.github.io/docs/self-host-troubleshooting/#pdf-conversion-issues
-	php$phpversion vendor/bin/snappdf download
-	# see: https://forum.cloudron.io/topic/11932/invoice-ninja-server-500-internal-error/29
-	find vendor/beganovich/snappdf/versions/*-Linux_x64/chrome-linux/ -type f -name chrome* ! -name "*.*" -print -exec chmod 755 {} \;
 popd
 
 chmod 750 "$install_dir"
