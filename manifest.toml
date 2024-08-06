@@ -5,7 +5,7 @@ name = "InvoiceNinja 5"
 description.en = "Create and email invoices, track payments, expenses, and time tasks"
 description.fr = "Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires"
 
-version = "5.10.12~ynh1"
+version = "5.10.18~ynh1"
 
 maintainers = ["Sebastian Gumprich"]
 
@@ -18,7 +18,7 @@ userdoc = "https://invoiceninja.github.io/"
 code = "https://github.com/invoiceninja/invoiceninja"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.20"
 architectures = "all"
 multi_instance = true
 
@@ -58,8 +58,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.10.12/invoiceninja.tar"
-        sha256 = "c6062fd860ae1a016c8453b313a8a3f5a717b0c6245a7493068d58eda7a541d8"
+        url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.10.18/invoiceninja.tar"
+        sha256 = "2904126a058881af5072102b0456414030e733b6d52cab43d8ac9c6afa01d406"
         format = "tar.gz"
         in_subdir = false
         autoupdate.strategy = "latest_github_release"
@@ -71,9 +71,13 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    api.url = "/api"
+    api.allowed = "visitors"
+    api.auth_header = false
+    api.show_tile = false
 
     [resources.apt]
-    packages = "mariadb-server, php8.2-bcmath, php8.2-gmp, php8.2-fileinfo, php8.2-gd, php8.2-mbstring, php8.2-pdo, php8.2-xml, php8.2-curl, php8.2-zip, php8.2-mysql, libnss3-dev, libatk1.0-0, libatk-bridge2.0-0, libxcomposite1, libxrandr2, libasound2, libcups2, libdrm2, libxkbcommon0, libxdamage1, libxfixes3, libgbm1, libpango-1.0-0, libcairo2"
+    packages = "mariadb-server, php8.3-bcmath, php8.3-gmp, php8.3-fileinfo, php8.3-gd, php8.3-mbstring, php8.3-pdo, php8.3-xml, php8.3-curl, php8.3-zip, php8.3-mysql, libnss3-dev, libatk1.0-0, libatk-bridge2.0-0, libxcomposite1, libxrandr2, libasound2, libcups2, libdrm2, libxkbcommon0, libxdamage1, libxfixes3, libgbm1, libpango-1.0-0, libcairo2, chromium"
 
     [resources.database]
     type = "mysql"
