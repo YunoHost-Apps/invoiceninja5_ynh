@@ -40,8 +40,6 @@ ynh_config_add_phpfpm
 ynh_config_add_nginx
 
 #=================================================
-# SPECIFIC SETUP
-#=================================================
 # MODIFY A CONFIG FILE
 #=================================================
 ynh_script_progression "Updating configuration..."

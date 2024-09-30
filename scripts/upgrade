@@ -4,6 +4,24 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# ENSURE BACKWARD COMPATIBILITY
+#=================================================
+ynh_script_progression "Ensuring backward compatibility..."
+
+# Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
+ynh_app_setting_delete --key=email_firstname
+ynh_app_setting_delete --key=email_lastname
+ynh_app_setting_delete --key=email # also delete unnecessary duplicate of state storage
+
+# Retrieve `$admin` user settings
+ynh_app_setting_set_default --key=email_fullname --value="$(ynh_user_get_info --username=$admin --key=fullname)"
+ynh_app_setting_set_default --key=email --value="$(ynh_user_get_info --username=$admin --key=mail)"
+
+ynh_app_setting_set_default --key=api_secret --value="$(ynh_string_random --length=32)"
+ynh_app_setting_set_default --key=app_key --value="$(ynh_string_random --length=32)"
+ynh_app_setting_set_default --key=phantomjs_key --value="$(ynh_string_random --length=32)"
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
@@ -20,24 +38,6 @@ ynh_config_add_phpfpm
 ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
-
-#=================================================
-# ENSURE BACKWARD COMPATIBILITY
-#=================================================
-ynh_script_progression "Ensuring backward compatibility..."
-
-# Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
-ynh_app_setting_delete --key=email_firstname
-ynh_app_setting_delete --key=email_lastname
-ynh_app_setting_delete --key=email # also delete unnecessary duplicate of state storage
-
-# Retrieve `$admin` user settings
-email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
-email="$(ynh_user_get_info --username=$admin --key=mail)"
-
-api_secret="$(ynh_string_random --length=32)"
-app_key="$(ynh_string_random --length=32)"
-phantomjs_key="$(ynh_string_random --length=32)"
 
 #=================================================
 # UPDATE A CONFIG FILE
