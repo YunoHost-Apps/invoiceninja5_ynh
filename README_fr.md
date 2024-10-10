@@ -21,6 +21,7 @@ Invoice Ninja est une plate-forme de facturation auto-hébergée permettant de c
 
 **Version incluse :** 5.10.34~ynh1
 
+
 **Démo :** <https://react.invoicing.co/demo>
 
 ## Captures d’écran
