@@ -60,6 +60,11 @@ pushd "$install_dir"
 	php$php_version artisan cache:clear
 popd
 
+# invoiceninja creates some directories that need to be chmod'ed
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
+
 #=================================================
 # ADD A CRON JOB
 #=================================================
