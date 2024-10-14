@@ -39,10 +39,6 @@ ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
-api_secret="$(ynh_string_random --length=32)"
-app_key="$(ynh_string_random --length=32)"
-phantomjs_key="$(ynh_string_random --length=32)"
-
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
