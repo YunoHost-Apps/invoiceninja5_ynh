@@ -44,7 +44,7 @@ ynh_config_add_nginx
 #=================================================
 ynh_script_progression "Updating configuration..."
 
-#ynh_config_add --template="default.env" --destination="$install_dir/.env"
+ynh_config_add --template="default.env" --destination="$install_dir/.env"
 
 #=================================================
 # BUILD THE APPLICATION
