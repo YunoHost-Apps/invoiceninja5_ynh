@@ -1,99 +1,82 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# ENSURE BACKWARD COMPATIBILITY
+#=================================================
+ynh_script_progression "Ensuring backward compatibility..."
+
+# Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
+ynh_app_setting_delete --key=email_firstname
+ynh_app_setting_delete --key=email_lastname
+ynh_app_setting_delete --key=email # also delete unnecessary duplicate of state storage
+
+# Retrieve `$admin` user settings
+ynh_app_setting_set_default --key=email_fullname --value="$(ynh_user_get_info --username=$admin --key=fullname)"
+ynh_app_setting_set_default --key=email --value="$(ynh_user_get_info --username=$admin --key=mail)"
+
+ynh_app_setting_set_default --key=api_secret --value="$(ynh_string_random --length=32)"
+ynh_app_setting_set_default --key=app_key --value="$(ynh_string_random --length=32)"
+ynh_app_setting_set_default --key=phantomjs_key --value="$(ynh_string_random --length=32)"
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..." --weight=1
+ynh_script_progression "Upgrading source files..."
 
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=".env public/storage"
-
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env public/storage"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
-# Create a dedicated PHP-FPM config
-ynh_add_fpm_config
+ynh_config_add_phpfpm
 
-# Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
-
-#=================================================
-# ENSURE BACKWARD COMPATIBILITY
-#=================================================
-ynh_script_progression --message="Ensuring backward compatibility..." --weight=1
-
-# Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
-ynh_app_setting_delete --app=$app --key=email_firstname
-ynh_app_setting_delete --app=$app --key=email_lastname
-ynh_app_setting_delete --app=$app --key=email # also delete unnecessary duplicate of state storage
-
-# Retrieve `$admin` user settings
-email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
-email="$(ynh_user_get_info --username=$admin --key=mail)"
+ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a configuration file..." --weight=1
+ynh_script_progression "Updating configuration..."
 
-ynh_add_config --template="default.env" --destination="$install_dir/.env"
-
-chmod 600 "$install_dir/.env"
-chown $app:$app "$install_dir/.env"
+ynh_config_add --template="default.env" --destination="$install_dir/.env"
 
 #=================================================
 # UPGRADE DATABASE
 #=================================================
-ynh_script_progression --message="Upgrading the database..." --weight=1
+ynh_script_progression "Upgrading the database..."
 
 pushd "$install_dir"
 	# Clear caches
 	# https://github.com/invoiceninja/invoiceninja/issues/7397
-	#ynh_secure_remove --file=$install_dir/bootstrap/cache/
-	#ynh_secure_remove --file=$install_dir/storage/framework/cache/
-	#ynh_secure_remove --file=$install_dir/storage/framework/sessions/
+	#ynh_safe_rm $install_dir/bootstrap/cache/
+	#ynh_safe_rm $install_dir/storage/framework/cache/
+	#ynh_safe_rm $install_dir/storage/framework/sessions/
 
 	#mkdir -p $install_dir/bootstrap/cache/ $install_dir/storage/framework/cache/ $install_dir/storage/framework/sessions/
 
 	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
-	php$phpversion artisan view:clear
-	php$phpversion artisan cache:clear
+	php$php_version artisan view:clear
+	php$php_version artisan cache:clear
 
 	# Run the database migrations
-	php$phpversion artisan migrate --force --no-interaction --verbose
+	php$php_version artisan migrate --force --no-interaction --verbose
 
 	# Optimize the framework for better performance
-	php$phpversion artisan optimize --no-interaction --verbose
+	php$php_version artisan optimize --no-interaction --verbose
 
 	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
-	#php$phpversion artisan view:clear
-	#php$phpversion artisan cache:clear
+	#php$php_version artisan view:clear
+	#php$php_version artisan cache:clear
 popd
-
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed"
+ynh_script_progression "Upgrade of $app completed"
