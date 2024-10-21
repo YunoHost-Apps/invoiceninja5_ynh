@@ -1,2 +1,2 @@
-* * * * * __APP__ cd __INSTALL_DIR__ && /usr/bin/php__PHPVERSION__ -d register_argc_argv=On artisan schedule:run >> /dev/null 2>&1
-* * * * * __APP__ cd __INSTALL_DIR__ && /usr/bin/php__PHPVERSION__ -d register_argc_argv=On artisan queue:work --stop-when-empty >> /dev/null 2>&1
+* * * * * __APP__ cd __INSTALL_DIR__ && /usr/bin/php__PHP_VERSION__ -d register_argc_argv=On artisan schedule:run >> /dev/null 2>&1
+* * * * * __APP__ cd __INSTALL_DIR__ && /usr/bin/php__PHP_VERSION__ -d register_argc_argv=On artisan queue:work --stop-when-empty >> /dev/null 2>&1
