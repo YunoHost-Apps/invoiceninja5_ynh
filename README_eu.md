@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # InvoiceNinja 5 YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/invoiceninja5.svg)](https://ci-apps.yunohost.org/ci/apps/invoiceninja5/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/invoiceninja5.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/invoiceninja5)](https://ci-apps.yunohost.org/ci/apps/invoiceninja5/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/invoiceninja5)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/invoiceninja5)
 
 [![Instalatu InvoiceNinja 5 YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=invoiceninja5)
 
@@ -19,7 +21,7 @@ EZ editatu eskuz.
 Invoice Ninja is a self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 
 
-**Paketatutako bertsioa:** 5.10.54~ynh1
+**Paketatutako bertsioa:** 5.10.55~ynh1
 
 **Demoa:** <https://react.invoicing.co/demo>
 
