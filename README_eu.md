@@ -21,7 +21,7 @@ EZ editatu eskuz.
 Invoice Ninja is a self-hosted invoicing platform to create & email invoices, track payments and expenses, and time billable tasks & projects for clients.
 
 
-**Paketatutako bertsioa:** 5.10.62~ynh1
+**Paketatutako bertsioa:** 5.11.2~ynh1
 
 **Demoa:** <https://react.invoicing.co/demo>
 
