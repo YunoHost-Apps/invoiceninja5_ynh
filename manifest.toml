@@ -64,7 +64,7 @@ ram.runtime = "50M"
         format = "tar.gz"
         in_subdir = false
         autoupdate.strategy = "latest_github_release"
-        autoupdate.asset = "invoiceninja.tar"
+        autoupdate.asset = "invoiceninja.tar$"
 
     [resources.system_user]
 
