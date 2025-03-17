@@ -1,10 +1,14 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# GENERATE KEYS AND RETRIEVE ADMIN USER INFO
+# INITIALIZE AND STORE SETTINGS
 #=================================================
 
 api_secret="$(ynh_string_random --length=32)"
@@ -13,11 +17,6 @@ phantomjs_key="$(ynh_string_random --length=32)"
 
 email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
 email="$(ynh_user_get_info --username=$admin --key=mail)"
-
-#=================================================
-# STORE KEYS TO APP SETTINGS
-#=================================================
-ynh_script_progression "Storing secrets to app settings..."
 
 ynh_app_setting_set --key=api_secret --value=$api_secret
 ynh_app_setting_set --key=app_key --value=$app_key
@@ -28,23 +27,26 @@ ynh_app_setting_set --key=phantomjs_key --value=$phantomjs_key
 #=================================================
 ynh_script_progression "Setting up source files..."
 
+# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
+
+#=================================================
+# APP INITIAL CONFIGURATION
+#=================================================
+ynh_script_progression "Adding $app's configuration files..."
+
+ynh_config_add --template="default.env" --destination="$install_dir/.env"
 
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
 ynh_script_progression "Adding system configurations related to $app..."
 
+# Create a PHP-FPM config (with conf/extra_php-fpm.conf being appended to it)
 ynh_config_add_phpfpm
 
+# Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
-
-#=================================================
-# MODIFY A CONFIG FILE
-#=================================================
-ynh_script_progression "Updating configuration..."
-
-ynh_config_add --template="default.env" --destination="$install_dir/.env"
 
 #=================================================
 # BUILD THE APPLICATION
