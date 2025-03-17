@@ -1,12 +1,16 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# ENSURE BACKWARD COMPATIBILITY
+# ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression "Ensuring backward compatibility..."
+ynh_script_progression "Ensuring downward compatibility..."
 
 # Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
 ynh_app_setting_delete --key=email_firstname
@@ -26,7 +30,15 @@ ynh_app_setting_set_default --key=phantomjs_key --value="$(ynh_string_random --l
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
+# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env public/storage"
+
+#=================================================
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression "Updating $app's configuration files..."
+
+ynh_config_add --template="default.env" --destination="$install_dir/.env"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -38,13 +50,6 @@ ynh_config_add_phpfpm
 ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
-
-#=================================================
-# UPDATE A CONFIG FILE
-#=================================================
-ynh_script_progression "Updating configuration..."
-
-ynh_config_add --template="default.env" --destination="$install_dir/.env"
 
 #=================================================
 # UPGRADE DATABASE

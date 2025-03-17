@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "invoiceninja5"
@@ -58,13 +60,13 @@ ram.runtime = "50M"
 
     [resources.sources]
 
-        [resources.sources.main]
-        url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.11.56/invoiceninja.tar"
-        sha256 = "979498b1e5afffa8de305b919bd799ba6c6a2b343d5a82ce94f9f6b969a61b03"
-        format = "tar.gz"
-        in_subdir = false
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset = "invoiceninja.tar$"
+    [resources.sources.main]
+    url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.11.56/invoiceninja.tar"
+    sha256 = "979498b1e5afffa8de305b919bd799ba6c6a2b343d5a82ce94f9f6b969a61b03"
+    format = "tar.gz"
+    in_subdir = false
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset = "invoiceninja.tar$"
 
     [resources.system_user]
 
