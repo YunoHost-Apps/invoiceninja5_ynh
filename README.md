@@ -12,7 +12,7 @@ Create and email invoices, track payments, expenses, and time tasks
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://invoiceninja.org)
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://react.invoicing.co/demo)
-[![Version: 5.12.25~ynh1](https://img.shields.io/badge/Version-5.12.25~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/invoiceninja5/)
+[![Version: 5.12.26~ynh1](https://img.shields.io/badge/Version-5.12.26~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/invoiceninja5/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/invoiceninja5"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
