@@ -80,7 +80,7 @@ ram.runtime = "50M"
     api.show_tile = false
 
     [resources.apt]
-    packages = "mariadb-server, php8.3-bcmath, php8.3-gmp, php8.3-fileinfo, php8.3-gd, php8.3-mbstring, php8.3-pdo, php8.3-xml, php8.3-curl, php8.3-zip, php8.3-mysql, libnss3-dev, libatk1.0-0, libatk-bridge2.0-0, libxcomposite1, libxrandr2, libasound2, libcups2, libdrm2, libxkbcommon0, libxdamage1, libxfixes3, libgbm1, libpango-1.0-0, libcairo2, chromium"
+    packages = "mariadb-server, php8.4-bcmath, php8.4-gmp, php8.4-fileinfo, php8.4-gd, php8.4-mbstring, php8.4-pdo, php8.4-xml, php8.4-curl, php8.4-zip, php8.4-mysql, libnss3-dev, libatk1.0-0, libatk-bridge2.0-0, libxcomposite1, libxrandr2, libasound2, libcups2, libdrm2, libxkbcommon0, libxdamage1, libxfixes3, libgbm1, libpango-1.0-0, libcairo2, chromium"
 
     [resources.database]
     type = "mysql"
