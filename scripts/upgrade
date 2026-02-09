@@ -11,32 +11,22 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Ensuring downward compatibility..."
 
-if [ -z "${mail_address:-}" ]; then
-	mail_address="${app}@${domain}"
-	ynh_app_setting_set --key=default_from_email_address --value=$mail_address
-fi
-
-if [ -z "${mail_name:-}" ]; then
-	mail_name="${app}@${domain}"
-	ynh_app_setting_set --key=default_from_email_name --value=$mail_name
-fi
-
 # Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516
 ynh_app_setting_delete --key=email_firstname
 ynh_app_setting_delete --key=email_lastname
 ynh_app_setting_delete --key=email # also delete unnecessary duplicate of state storage
 
 # Retrieve `$admin` user settings
-mail_from_name=$(ynh_app_setting_get --key=mail_from_name)
+mail_from_name=$(ynh_app_setting_get --key=default_from_email_address)
 if [ -z "$mail_from_name" ]; then
 	mail_from_name="${app}@${domain}"
-	ynh_app_setting_set --key=mail_from_name --value="$mail_from_name"
+	ynh_app_setting_set --key=default_from_email_address --value="$mail_from_name"
 fi
 
-mail_from_sender=$(ynh_app_setting_get --key=mail_from_sender)
+mail_from_sender=$(ynh_app_setting_get --key=default_from_email_name)
 if [ -z "$mail_from_sender" ]; then
 	mail_from_sender="${app}@${domain}"
-	ynh_app_setting_set --key=mail_from_sender --value="$mail_from_sender"
+	ynh_app_setting_set --key=default_from_email_name --value="$mail_from_sender"
 fi
 
 ynh_app_setting_set_default --key=api_secret --value="$(ynh_string_random --length=32)"

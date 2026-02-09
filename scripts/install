@@ -14,14 +14,14 @@ api_secret="$(ynh_string_random --length=32)"
 app_key="$(ynh_string_random --length=32)"
 phantomjs_key="$(ynh_string_random --length=32)"
 
-mail_address=$(ynh_app_setting_get --key=default_from_email_address)
-mail_name=$(ynh_app_setting_get --key=default_from_email_name)
+email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
+email="$(ynh_user_get_info --username=$admin --key=mail)"
 
 ynh_app_setting_set --key=api_secret --value=$api_secret
 ynh_app_setting_set --key=app_key --value=$app_key
 ynh_app_setting_set --key=phantomjs_key --value=$phantomjs_key
-ynh_app_setting_set --key=default_from_email_address --value="$mail_address"
-ynh_app_setting_set --key=default_from_email_name --value="$mail_name"
+ynh_app_setting_set --key=default_from_email_address --value="$email"
+ynh_app_setting_set --key=default_from_email_name --value="$email_fullname"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
