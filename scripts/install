@@ -57,7 +57,7 @@ ynh_script_progression "Building the application..."
 pushd "$install_dir"
 	# Run the database migrations and initially fill the db
 	php$php_version artisan migrate:fresh --seed --no-interaction --verbose --force
-	php$php_version artisan ninja:create-account --email $mail_address --password "$password" --no-interaction --verbose
+	php$php_version artisan ninja:create-account --email $default_from_email_address --password "$password" --no-interaction --verbose
 	php$php_version artisan optimize --no-interaction --verbose
 	php$php_version artisan view:clear
 	php$php_version artisan cache:clear
