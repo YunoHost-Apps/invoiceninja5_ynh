@@ -20,8 +20,8 @@ mail_name=$(ynh_app_setting_get --key=mail_name)
 ynh_app_setting_set --key=api_secret --value=$api_secret
 ynh_app_setting_set --key=app_key --value=$app_key
 ynh_app_setting_set --key=phantomjs_key --value=$phantomjs_key
-#ynh_app_setting_set --key=mail_address --value="$mail_address"
-#ynh_app_setting_set --key=mail_name --value="$mail_name"
+ynh_app_setting_set --key=mail_address --value="$mail_address"
+ynh_app_setting_set --key=mail_name --value="$mail_name"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
