@@ -13,12 +13,12 @@ ynh_script_progression "Ensuring downward compatibility..."
 
 if [ -z "${mail_address:-}" ]; then
 	mail_address="true"
-	ynh_app_setting_set --app=$app --key=mail_address --value=$mail_address
+	ynh_app_setting_set --key=mail_address --value=$mail_address
 fi
 
 if [ -z "${mail_name:-}" ]; then
 	mail_name="true"
-	ynh_app_setting_set --app=$app --key=mail_name --value=$mail_name
+	ynh_app_setting_set --key=mail_name --value=$mail_name
 fi
 
 # Delete deprecated `firstname`/`lastname` settings. See upstream https://github.com/YunoHost/yunohost/pull/1516

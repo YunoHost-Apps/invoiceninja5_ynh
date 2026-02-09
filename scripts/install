@@ -14,8 +14,8 @@ api_secret="$(ynh_string_random --length=32)"
 app_key="$(ynh_string_random --length=32)"
 phantomjs_key="$(ynh_string_random --length=32)"
 
-mail_address=$(ynh_app_setting_get --app=$mail_address --key=mail_address)
-mail_name=$(ynh_app_setting_get --app=$mail_name --key=mail_name)
+mail_address=$(ynh_app_setting_get --key=mail_address)
+mail_name=$(ynh_app_setting_get --key=mail_name)
 
 ynh_app_setting_set --key=api_secret --value=$api_secret
 ynh_app_setting_set --key=app_key --value=$app_key
