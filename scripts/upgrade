@@ -17,16 +17,16 @@ ynh_app_setting_delete --key=email_lastname
 ynh_app_setting_delete --key=email # also delete unnecessary duplicate of state storage
 
 # Retrieve `$admin` user settings
-mail_from_name=$(ynh_app_setting_get --key=default_from_email_address)
-if [ -z "$mail_from_name" ]; then
-	mail_from_name="${app}@${domain}"
-	ynh_app_setting_set --key=default_from_email_address --value="$mail_from_name"
+default_from_email_address=$(ynh_app_setting_get --key=default_from_email_address)
+if [ -z "$default_from_email_address" ]; then
+	default_from_email_address="${app}@${domain}"
+	ynh_app_setting_set --key=default_from_email_address --value="$default_from_email_address"
 fi
 
-mail_from_sender=$(ynh_app_setting_get --key=default_from_email_name)
-if [ -z "$mail_from_sender" ]; then
-	mail_from_sender="${app}@${domain}"
-	ynh_app_setting_set --key=default_from_email_name --value="$mail_from_sender"
+default_from_email_name=$(ynh_app_setting_get --key=default_from_email_name)
+if [ -z "$default_from_email_name" ]; then
+	default_from_email_name="${app}@${domain}"
+	ynh_app_setting_set --key=default_from_email_name --value="$default_from_email_name"
 fi
 
 ynh_app_setting_set_default --key=api_secret --value="$(ynh_string_random --length=32)"
