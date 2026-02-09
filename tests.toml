@@ -12,8 +12,8 @@ test_format = 1.0
     # Default args to use for install
     # -------------------------------
 
-    args.mail_address = "invoiceninja@domain.tld"
-    args.mail_name = "invoiceninja"
+    args.default_from_email_address = "invoiceninja@example.tld"
+    args.default_from_email_name = "invoiceninja"
 
     # -------------------------------
     # Commits to test upgrade from
