@@ -54,14 +54,14 @@ ram.runtime = "50M"
     type = "password"
 
     [install.mail_name]
-    ask.en = "Choose what name will be displayed when InvoiceNinja sends mails."
-    ask.fr = ""
+    ask.en = "Choose what name will be displayed when InvoiceNinja sends mails"
+    ask.fr = "Choisissez quel nom sera affiché lorsque InvoiceNinja enverra des e-mails"
     type = "string"
-    default = ""
+    default = "Invoice Ninja"
 
     [install.mail_address]
-    ask.en = "Choose from which mail-address emails will be send."
-    help.fr = ""
+    ask.en = "Choose from which mail address emails will be sent"
+    ask.fr = "Choisissez à partir de quelle adresse e-mail les e-mails seront envoyés"
     type = "email"
     default = ""
 
