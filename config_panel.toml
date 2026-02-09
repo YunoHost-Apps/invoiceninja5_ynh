@@ -13,6 +13,6 @@ name = "InvoicNinja configuration"
 
         [main.config.mail_name]
         ask = "from name"
-        type = "name"
+        type = "string"
         help = "Default name address to use for various automated names."
         bind = "MAIL_FROM_NAME:__INSTALL_DIR__/.env"
