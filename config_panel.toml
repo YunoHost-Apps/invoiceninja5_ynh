@@ -1,0 +1,18 @@
+version = "1.0"
+[main]
+name = "InvoicNinja configuration"
+
+	[main.config]
+	name = "Configuration Options"
+
+        [main.config.mail_address]
+        ask = "from email"
+        type = "email"
+        help = "Default email address to use for various automated emails."
+        bind = "MAIL_FROM_ADDRESS:__INSTALL_DIR__/.env"
+
+        [main.config.mail_name]
+        ask = "from name"
+        type = "name"
+        help = "Default name address to use for various automated names."
+        bind = "MAIL_FROM_NAME:__INSTALL_DIR__/.env"

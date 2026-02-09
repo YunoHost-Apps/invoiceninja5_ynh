@@ -14,12 +14,14 @@ api_secret="$(ynh_string_random --length=32)"
 app_key="$(ynh_string_random --length=32)"
 phantomjs_key="$(ynh_string_random --length=32)"
 
-email_fullname="$(ynh_user_get_info --username=$admin --key=fullname)"
-email="$(ynh_user_get_info --username=$admin --key=mail)"
+mail_address=$(ynh_app_setting_get --app=$mail_address --key=mail_address)
+mail_name=$(ynh_app_setting_get --app=$mail_name --key=mail_name)
 
 ynh_app_setting_set --key=api_secret --value=$api_secret
 ynh_app_setting_set --key=app_key --value=$app_key
 ynh_app_setting_set --key=phantomjs_key --value=$phantomjs_key
+#ynh_app_setting_set --key=mail_address --value="$mail_address"
+#ynh_app_setting_set --key=mail_name --value="$mail_name"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -55,7 +57,7 @@ ynh_script_progression "Building the application..."
 pushd "$install_dir"
 	# Run the database migrations and initially fill the db
 	php$php_version artisan migrate:fresh --seed --no-interaction --verbose --force
-	php$php_version artisan ninja:create-account --email $email --password "$password" --no-interaction --verbose
+	php$php_version artisan ninja:create-account --email $mail_address --password "$password" --no-interaction --verbose
 	php$php_version artisan optimize --no-interaction --verbose
 	php$php_version artisan view:clear
 	php$php_version artisan cache:clear
