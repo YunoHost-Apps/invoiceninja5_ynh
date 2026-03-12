@@ -1,5 +1,4 @@
-# we need to clear invoiceninja's cache after updating vars
-# through the config-panel.
+# Cache needs to be cleared after updating vars through config panel
 ynh_app_config_apply() {
     _ynh_app_config_apply
     pushd "$install_dir"
@@ -7,3 +6,5 @@ ynh_app_config_apply() {
 	php$phpversion artisan optimize --no-interaction --verbose
     popd
 }
+
+ynh_app_config_run $1
