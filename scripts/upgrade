@@ -65,6 +65,7 @@ pushd "$install_dir"
 	#mkdir -p $install_dir/bootstrap/cache/ $install_dir/storage/framework/cache/ $install_dir/storage/framework/sessions/
 
 	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
+    chown -R "$app:www-data" "$install_dir" 
 	php$php_version artisan view:clear
 	php$php_version artisan cache:clear
 
