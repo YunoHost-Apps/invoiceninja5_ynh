@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source /usr/share/yunohost/helpers
+
+# Cache needs to be cleared after updating vars through config panel
+ynh_app_config_apply() {
+    _ynh_app_config_apply
+    pushd "$install_dir"
+        # Optimize the framework for better performance
+	php$phpversion artisan optimize --no-interaction --verbose
+    popd
+}
+
+ynh_app_config_run $1
