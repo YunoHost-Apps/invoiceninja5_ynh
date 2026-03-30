@@ -64,6 +64,11 @@ pushd "$install_dir"
 
 	#mkdir -p $install_dir/bootstrap/cache/ $install_dir/storage/framework/cache/ $install_dir/storage/framework/sessions/
 
+	# invoiceninja creates some directories that need to be chmod'ed
+	chmod 750 "$install_dir"
+	chmod -R o-rwx "$install_dir"
+	chown -R $app:www-data "$install_dir"
+
 	# clear cached stuff under /app/data/storage/framework (https://github.com/laravel/framework/issues/17377)
 	php$php_version artisan view:clear
 	php$php_version artisan cache:clear
