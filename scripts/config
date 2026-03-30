@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source /usr/share/yunohost/helpers
 
 # Cache needs to be cleared after updating vars through config panel
