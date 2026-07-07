@@ -53,7 +53,7 @@ ynh_config_add --template="default.env" --destination="$install_dir/.env"
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
 
-ynh_config_add_phpfpm
+ynh_config_add_phpfpm --usage=medium
 
 ynh_config_add_nginx
 
