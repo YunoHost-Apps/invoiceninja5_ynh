@@ -7,7 +7,7 @@ name = "InvoiceNinja 5"
 description.en = "Create and email invoices, track payments, expenses, and time tasks"
 description.fr = "Créer et envoyer des factures par e-mail, suivre les paiements, les dépenses et les tâches horaires"
 
-version = "5.13.26~ynh1"
+version = "5.13.33~ynh1"
 
 maintainers = ["Sebastian Gumprich"]
 
@@ -20,7 +20,7 @@ userdoc = "https://invoiceninja.github.io/"
 code = "https://github.com/invoiceninja/invoiceninja"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.40"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -44,7 +44,7 @@ ram.runtime = "50M"
     ask.en = "Choose the application language"
     ask.fr = "Choisissez la langue de l'application"
     type = "select"
-    choices = ["fr", "en"]
+    choices = ["de", "en", "es_ES", "fi", "fa", "fr", "it", "lt", "nl", "pl", "pt_PT", "zh_TW"]
     default = "fr"
 
     [install.admin]
@@ -58,8 +58,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.13.26/invoiceninja.tar"
-    sha256 = "be344fc3977394b7defda1bf636f33d42108b4045bb310e5aa91176749666dbc"
+    url = "https://github.com/invoiceninja/invoiceninja/releases/download/v5.13.33/invoiceninja.tar"
+    sha256 = "246e5403cbd89bc64946b7faf9efa6af7d2bd28c18bc88b460124372afc298ac"
     format = "tar.gz"
     in_subdir = false
     autoupdate.strategy = "latest_github_release"
@@ -78,7 +78,7 @@ ram.runtime = "50M"
     api.show_tile = false
 
     [resources.apt]
-    packages = "mariadb-server, php8.4-bcmath, php8.4-gmp, php8.4-fileinfo, php8.4-gd, php8.4-mbstring, php8.4-pdo, php8.4-xml, php8.4-curl, php8.4-zip, php8.4-mysql, libnss3-dev, libatk1.0-0, libatk-bridge2.0-0, libxcomposite1, libxrandr2, libasound2, libcups2, libdrm2, libxkbcommon0, libxdamage1, libxfixes3, libgbm1, libpango-1.0-0, libcairo2, chromium"
+    packages = "mariadb-server, php8.5-bcmath, php8.5-gmp, php8.5-fileinfo, php8.5-gd, php8.5-mbstring, php8.5-pdo, php8.5-xml, php8.5-curl, php8.5-zip, php8.5-mysql, libnss3-dev, libatk1.0-0, libatk-bridge2.0-0, libxcomposite1, libxrandr2, libasound2, libcups2, libdrm2, libxkbcommon0, libxdamage1, libxfixes3, libgbm1, libpango-1.0-0, libcairo2, chromium"
 
     [resources.database]
     type = "mysql"
